@@ -1,5 +1,7 @@
 package org.example.service;
 
-public interface CourierService
+import org.example.entity.Courier;
+
+public interface CourierService extends CoreService<Courier>
 {
 }
