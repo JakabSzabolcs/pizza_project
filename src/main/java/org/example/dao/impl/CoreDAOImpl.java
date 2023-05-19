@@ -1,16 +1,17 @@
 package org.example.dao.impl;
 
-import at.favre.lib.crypto.bcrypt.BCrypt;
+
 import org.example.dao.CoreDAO;
 import org.example.entity.AbstractEntity;
+import org.example.entity.CoreEntity;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import java.util.List;
 
-public abstract class CoreDAOImpl<T extends AbstractEntity> implements CoreDAO<T>
+public abstract class CoreDAOImpl<T extends CoreEntity> implements CoreDAO<T>
 {
-    @PersistenceContext(unitName = "pizza_db")
+    @PersistenceContext(unitName = "PizzaPersistence")
     protected EntityManager em;
 
     @Override

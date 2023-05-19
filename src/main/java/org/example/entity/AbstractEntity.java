@@ -5,30 +5,37 @@ import javax.validation.constraints.NotNull;
 import java.util.Date;
 
 @MappedSuperclass
-public abstract class AbstractEntity {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+public abstract class AbstractEntity extends CoreEntity{
 
     @NotNull
     @Temporal(TemporalType.TIMESTAMP)
-    protected Date creationDate;
+    @Column(updatable = false, name = "creation_date")
+    private Date creationDate;
 
+    @Column(name = "modification_date")
     @Temporal(TemporalType.TIMESTAMP)
-    protected Date modificationDate;
+    private Date modificationDate;
 
     @ManyToOne
-    protected User creatorUser;
+    private User creatorUser;
 
     @ManyToOne
-    protected User modifierUser;
+    private User modifierUser;
 
-    public Long getId() {
-        return id;
+    public User getCreatorUser() {
+        return creatorUser;
     }
 
-    public void setId(Long id) {
-        this.id = id;
+    public void setCreatorUser(User creatorUser) {
+        this.creatorUser = creatorUser;
+    }
+
+    public User getModifierUser() {
+        return modifierUser;
+    }
+
+    public void setModifierUser(User modifierUser) {
+        this.modifierUser = modifierUser;
     }
 
     public Date getCreationDate() {
@@ -46,22 +53,8 @@ public abstract class AbstractEntity {
     public void setModificationDate(Date modificationDate) {
         this.modificationDate = modificationDate;
     }
-
-    public User getCreatorUser() {
-        return creatorUser;
-    }
-
-    public void setCreatorUser(User creatorUser) {
-        this.creatorUser = creatorUser;
-    }
-
-    public User getModifierUser() {
-        return modifierUser;
-    }
-
-    public void setModifierUser(User modifierUser) {
-        this.modifierUser = modifierUser;
-    }
 }
+
+
 
 

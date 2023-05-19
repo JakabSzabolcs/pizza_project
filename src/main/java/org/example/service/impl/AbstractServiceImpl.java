@@ -2,6 +2,7 @@ package org.example.service.impl;
 
 import org.example.dao.CoreDAO;
 import org.example.entity.AbstractEntity;
+import org.example.entity.CoreEntity;
 import org.example.service.CoreService;
 
 import javax.ejb.TransactionAttribute;
@@ -9,7 +10,7 @@ import javax.ejb.TransactionAttributeType;
 import javax.inject.Inject;
 import java.util.List;
 
-public abstract class AbstractServiceImpl<T extends AbstractEntity> implements CoreService<T> {
+public abstract class AbstractServiceImpl<T extends CoreEntity> implements CoreService<T> {
 
     @Inject
     private CoreDAO<T> entityDAO;

@@ -1,9 +1,11 @@
 package org.example.entity;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
 import java.time.LocalDateTime;
 
 @Entity
+@Table
 public class Pizza extends AbstractEntity {
 
 
@@ -15,6 +17,8 @@ public class Pizza extends AbstractEntity {
 
     @Column(name = "price")
     private Integer price;
+
+
 
 
     public String getName() {

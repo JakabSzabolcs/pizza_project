@@ -5,8 +5,10 @@ import org.example.dao.UserDAO;
 import org.example.entity.User;
 import org.example.service.UserService;
 
+import javax.ejb.Stateless;
 import javax.inject.Inject;
 
+@Stateless
 public class UserServiceImpl extends AbstractServiceImpl<User> implements UserService {
 
     @Inject

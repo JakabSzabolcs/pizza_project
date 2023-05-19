@@ -1,10 +1,11 @@
 package org.example.service;
 
 import org.example.entity.AbstractEntity;
+import org.example.entity.CoreEntity;
 
 import java.util.List;
 
-public interface CoreService<T extends AbstractEntity>
+public interface CoreService<T extends CoreEntity>
 {
     List<T> getAll();
 
