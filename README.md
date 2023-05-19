@@ -1,11 +1,10 @@
-readme
+README
 
+persistence-unit name = "PizzaPersistence"
+db source name = "PizzaDS"
 
-alap hardcode-olt felhasznákók eddig:
-felhasználónév:jelszó
----------------
-admin:admin
-user:user
+hardcoded users: 
+admin - admin
+user - user
 
-
-a css dizájnért előre is bocsánat, de nem vagyok nagy dizájner(még:o)
+has some very basic css formatting
