@@ -8,6 +8,7 @@ import org.example.entity.User;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
 import javax.ejb.Stateless;
+import javax.persistence.NoResultException;
 
 @Stateless
 public class UserDAOImpl extends CoreDAOImpl<User> implements UserDAO {
@@ -38,8 +39,15 @@ public class UserDAOImpl extends CoreDAOImpl<User> implements UserDAO {
 
     @Override
     public User findByUsername(String username) {
-        return em.createQuery("select n from " + getManagedClass().getSimpleName() + " n where n.username = :username", getManagedClass())
-                .setParameter("username", username).getSingleResult();
+        try
+        {
+            return em.createQuery("select n from " + getManagedClass().getSimpleName() + " n where n.username = :username", getManagedClass())
+                    .setParameter("username", username).getSingleResult();
+        }
+        catch (NoResultException e)
+        {
+            return null;
+        }
     }
 
 

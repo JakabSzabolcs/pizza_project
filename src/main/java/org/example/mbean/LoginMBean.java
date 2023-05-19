@@ -2,6 +2,7 @@ package org.example.mbean;
 
 import at.favre.lib.crypto.bcrypt.BCrypt;
 import jdk.jfr.Name;
+import org.example.entity.User;
 import org.example.entity.UserRole;
 import org.example.service.UserService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
@@ -31,23 +32,23 @@ public class LoginMBean implements Serializable{
         return role;
     }
 
-
-
-    public String login(String username,String password) {
+    public String login(String username, String password) {
+        User user = userService.findByUsername(username);
         BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
-        if (userService.findByUsername(username) != null && passwordEncoder.matches(password, userService.findByUsername(username).getPassword())) {
-            if (userService.findByUsername(username).getRole().equals(UserRole.ADMIN)) {
-                FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Sikeres ADMIN bejelentkezés!", null));
-                return "/xhtml/admin.xhtml?faces-redirect=true";
-            } else {
-                FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Sikeres USER bejelentkezés", null));
-                return "/xhtml/user.xhtml?faces-redirect=true";
-            }
-
+        if (user == null || !passwordEncoder.matches(password, user.getPassword())) {
+            FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, "Hibás felhasználónév vagy jelszó!", ""));
+            return null;
         }
-        FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, "Sikertelen bejelentkezés", null));
-        return null;
+
+        if (user.getRole().equals(UserRole.ADMIN)) {
+            FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Sikeres ADMIN bejelentkezés!", ""));
+            return "/xhtml/admin.xhtml?faces-redirect=true";
+        } else {
+            FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Sikeres USER bejelentkezés", ""));
+            return "/xhtml/user.xhtml?faces-redirect=true";
+        }
     }
+
 
 
     public String getUsername() {

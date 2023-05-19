@@ -6,13 +6,15 @@
       xmlns:h="http://java.sun.com/jsf/html" xmlns:ui="http://java.sun.com/jsf/facelets" xml:lang="en" lang="en">
 <h:head>
     <title>Login</title>
+    <h:outputStylesheet library="css" name="styles.css" />
 </h:head>
+
 <body>
 
-    <h:form>
+    <h:form >
         <p:growl id="growl" showDetail="true" />
 
-        <p:panel header="Login Panel">
+        <p:panel header="Login Panel" styleClass="login-panel">
             <h:panelGrid columns="2" cellpadding="5">
                 <h:outputLabel for="username" value="Username:" />
                 <p:inputText id="username" value="#{loginMBean.username}" required="true" label="username" />
