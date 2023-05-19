@@ -8,7 +8,6 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
 
-//filter for only xhtml/* pages
 @WebFilter(filterName="AuthenticationFilter", urlPatterns = {"/xhtml/*"})
 public class AuthenticationFilter implements Filter {
     @Override

@@ -53,21 +53,16 @@ public class LoginMBean implements Serializable {
 
             if (user.getRole().equals(UserRole.ADMIN)) {
                 redirectUrl = "xhtml/admin.xhtml";
-                message = new FacesMessage(FacesMessage.SEVERITY_INFO, "Sikeres ADMIN bejelentkezés!", null);
             } else {
                 redirectUrl = "xhtml/user.xhtml";
-                message = new FacesMessage(FacesMessage.SEVERITY_INFO, "Sikeres USER bejelentkezés", null);
             }
-
-            FacesContext.getCurrentInstance().addMessage(null, message);
-
             try {
                 FacesContext.getCurrentInstance().getExternalContext().redirect(redirectUrl);
             } catch (IOException e) {
                 e.printStackTrace();
             }
         } else {
-            FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, "Sikertelen bejelentkezés", null));
+            FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, "Sikertelen bejelentkezés", "Hibás felhasználónév vagy jelszó!"));
         }
 
     }
