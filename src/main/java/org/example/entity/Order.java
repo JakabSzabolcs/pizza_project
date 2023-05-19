@@ -8,53 +8,44 @@ import java.util.Date;
 import java.util.List;
 
 @Entity
+@Table(name = "orders")
 public class Order extends AbstractEntity {
 
     @NotNull
     @Temporal(TemporalType.TIMESTAMP)
+    @Column(name = "delivery_date")
     private Date deliveryDate;
 
     @NotNull
     @ManyToOne
+    @JoinColumn(name = "courier_id")
     private Courier courier;
 
     @NotNull
     @ManyToMany
+    @JoinTable(name = "order_pizza",
+            joinColumns = @JoinColumn(name = "order_id"),
+            inverseJoinColumns = @JoinColumn(name = "pizza_id"))
     private List<Pizza> pizzas;
 
     @NotNull
-    @Size(max = 200)
+    @Column(name = "city")
     private String city;
 
     @NotNull
-    @Size(max = 200)
+    @Column(name = "street")
     private String street;
 
     @NotNull
-    @Size(max = 200)
+    @Column(name = "street_type")
     private String streetType;
 
     @NotNull
-    @Size(max = 200)
+    @Column(name = "house_number")
     private String houseNumber;
 
 
 
-    public Date getCreationDate() {
-        return creationDate;
-    }
-
-    public void setCreationDate(Date creationDate) {
-        this.creationDate = creationDate;
-    }
-
-    public Date getModificationDate() {
-        return modificationDate;
-    }
-
-    public void setModificationDate(Date modificationDate) {
-        this.modificationDate = modificationDate;
-    }
 
     public Date getDeliveryDate() {
         return deliveryDate;

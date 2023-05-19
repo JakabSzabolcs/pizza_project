@@ -5,6 +5,7 @@ import org.example.dao.OrderDAO;
 import org.example.dao.UserDAO;
 import org.example.entity.Order;
 import org.example.entity.User;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
 import javax.ejb.Stateless;
 
@@ -26,11 +27,21 @@ public class UserDAOImpl extends CoreDAOImpl<User> implements UserDAO {
     @Override
     public void update(User user) {
         user.setPassword(hashPassword(user.getPassword()));
+        em.merge(user);
     }
 
 
-    private String hashPassword(String password) {
-        return BCrypt.withDefaults().hashToString(12, password.toCharArray());
+    private  String hashPassword(String password) {
+        BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
+        return passwordEncoder.encode(password);
     }
+
+    @Override
+    public User findByUsername(String username) {
+        return em.createQuery("select n from " + getManagedClass().getSimpleName() + " n where n.username = :username", getManagedClass())
+                .setParameter("username", username).getSingleResult();
+    }
+
 
 }
+//$2a$12$mOWbXn5TX6Qi.EJjMcp3LeYp87NVRYUaf9wR3cgxYIxVsjxPRhu9G

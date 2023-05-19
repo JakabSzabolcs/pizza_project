@@ -6,35 +6,23 @@ import javax.validation.constraints.Size;
 import java.util.Date;
 
 @Entity
+@Table
 public class Courier extends AbstractEntity {
 
     @NotNull
     @Size(max = 500)
+    @Column(name = "first_name")
     private String firstName;
 
     @NotNull
     @Size(max = 500)
+    @Column(name = "last_name")
     private String lastName;
 
     @NotNull
+    @Size(max = 500)
+    @Column(name = "phone_number")
     private String phoneNumber;
-
-
-    public Date getCreationDate() {
-        return creationDate;
-    }
-
-    public void setCreationDate(Date creationDate) {
-        this.creationDate = creationDate;
-    }
-
-    public Date getModificationDate() {
-        return modificationDate;
-    }
-
-    public void setModificationDate(Date modificationDate) {
-        this.modificationDate = modificationDate;
-    }
 
 
     public String getFirstName() {
