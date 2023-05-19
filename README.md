@@ -1,3 +1,6 @@
+readme
+
+
 alap hardcode-olt felhasznákók eddig:
 felhasználónév:jelszó
 ---------------
