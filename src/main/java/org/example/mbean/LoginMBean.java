@@ -35,15 +35,17 @@ public class LoginMBean implements Serializable{
     public String login(String username, String password) {
         User user = userService.findByUsername(username);
         BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
+
         if (user == null || !passwordEncoder.matches(password, user.getPassword())) {
             FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, "Hibás felhasználónév vagy jelszó!", ""));
             return null;
         }
-
+        //TODO üzenetek átírása később
         if (user.getRole().equals(UserRole.ADMIN)) {
             FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Sikeres ADMIN bejelentkezés!", ""));
             return "/xhtml/admin.xhtml?faces-redirect=true";
         } else {
+
             FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Sikeres USER bejelentkezés", ""));
             return "/xhtml/user.xhtml?faces-redirect=true";
         }
