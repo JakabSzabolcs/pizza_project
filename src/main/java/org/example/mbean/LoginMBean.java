@@ -8,50 +8,78 @@ import org.example.service.UserService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
 
+import javax.annotation.PostConstruct;
 import javax.faces.application.FacesMessage;
+import javax.faces.context.ExternalContext;
 import javax.faces.context.FacesContext;
 import javax.faces.view.ViewScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
+import javax.servlet.http.HttpSession;
+import java.io.IOException;
 import java.io.Serializable;
 
 
 @ViewScoped
 @Named
-public class LoginMBean implements Serializable{
+public class LoginMBean implements Serializable {
 
     @Inject
     private UserService userService;
+
+    private User loggedInUser;
 
     private String username;
     private String password;
 
     private UserRole role;
 
-    public UserRole getRole() {
-        return role;
-    }
 
-    public String login(String username, String password) {
-        User user = userService.findByUsername(username);
+    @PostConstruct
+    private void init() {
+        ExternalContext externalContext = FacesContext.getCurrentInstance().getExternalContext();
+        HttpSession session = (HttpSession) externalContext.getSession(true);
+        loggedInUser = (User) session.getAttribute("user"); // Adj hozzá egy megfelelő kulcsot, ha a user más néven van tárolva
+
+    }
+    public void login(String username, String password) {
         BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
+        User user = userService.findByUsername(username);
+        HttpSession session = (HttpSession) FacesContext.getCurrentInstance().getExternalContext().getSession(true);
+        session.setAttribute("user", user);
+        if (user != null && passwordEncoder.matches(password, user.getPassword())) {
+            String redirectUrl = "";
+            FacesMessage message = null;
 
-        if (user == null || !passwordEncoder.matches(password, user.getPassword())) {
-            FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, "Hibás felhasználónév vagy jelszó!", ""));
-            return null;
-        }
-        //TODO üzenetek átírása később
-        if (user.getRole().equals(UserRole.ADMIN)) {
-            FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Sikeres ADMIN bejelentkezés!", ""));
-            return "/xhtml/admin.xhtml?faces-redirect=true";
+            if (user.getRole().equals(UserRole.ADMIN)) {
+                redirectUrl = "xhtml/admin.xhtml";
+                message = new FacesMessage(FacesMessage.SEVERITY_INFO, "Sikeres ADMIN bejelentkezés!", null);
+            } else {
+                redirectUrl = "xhtml/user.xhtml";
+                message = new FacesMessage(FacesMessage.SEVERITY_INFO, "Sikeres USER bejelentkezés", null);
+            }
+
+            FacesContext.getCurrentInstance().addMessage(null, message);
+
+            try {
+                FacesContext.getCurrentInstance().getExternalContext().redirect(redirectUrl);
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
         } else {
-
-            FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Sikeres USER bejelentkezés", ""));
-            return "/xhtml/user.xhtml?faces-redirect=true";
+            FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, "Sikertelen bejelentkezés", null));
         }
+
     }
 
-
+    public void logout() {
+        FacesContext.getCurrentInstance().getExternalContext().invalidateSession();
+        try {
+            FacesContext.getCurrentInstance().getExternalContext().redirect("../login.xhtml");
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
 
     public String getUsername() {
         return username;
@@ -68,7 +96,20 @@ public class LoginMBean implements Serializable{
     public void setPassword(String password) {
         this.password = password;
     }
+
+    public UserRole getRole() {
+        return role;
+    }
+
     private String hashPassword(String password) {
         return BCrypt.withDefaults().hashToString(12, password.toCharArray());
+    }
+
+    public User getLoggedInUser() {
+        return loggedInUser;
+    }
+
+    public void setLoggedInUser(User loggedInUser) {
+        this.loggedInUser = loggedInUser;
     }
 }

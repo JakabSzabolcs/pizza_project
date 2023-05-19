@@ -5,16 +5,17 @@
 <html xmlns="http://www.w3.org/1999/xhtml" xmlns:f="http://java.sun.com/jsf/core" xmlns:p="http://primefaces.org/ui"
       xmlns:h="http://java.sun.com/jsf/html" xmlns:ui="http://java.sun.com/jsf/facelets" xml:lang="en" lang="en">
 <h:head>
-    <title>User</title>
+    <title>Admin</title>
 </h:head>
-
-
     <h1>
-        EZ A USER OLDAL
+        EZ AZ ADMIN OLDAL
         <h:form>
+            <!--print  logged in as: #{loginMBean.user.username} -->
+
             <h:outputText value="Bejelentkezett felhasználó: #{loginMBean.loggedInUser.username}" />
+
             <p:commandButton value="Kijelentkezés" action="#{loginMBean.logout()}" />
+
         </h:form>
     </h1>
-
 </html>
