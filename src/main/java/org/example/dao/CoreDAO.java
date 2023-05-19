@@ -14,4 +14,5 @@ public interface CoreDAO <T extends AbstractEntity> {
     T findById(Long id);
 
     void update(T entity);
+
 }

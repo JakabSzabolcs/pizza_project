@@ -34,4 +34,10 @@ public class UserDAOImpl extends CoreDAOImpl<User> implements UserDAO {
         return BCrypt.withDefaults().hashToString(12, password.toCharArray());
     }
 
+    @Override
+    public User findByUsername(String username) {
+        return em.createQuery("select n from " + getManagedClass().getSimpleName() + " n where n.username = :username", getManagedClass())
+                .setParameter("username", username).getSingleResult();
+    }
+
 }

@@ -1,4 +1,11 @@
 package org.example.service.impl;
 
-public class CourierServiceImpl {
+import org.example.entity.AbstractEntity;
+import org.example.entity.Courier;
+import org.example.service.CourierService;
+
+import javax.ejb.Stateless;
+
+@Stateless
+public class CourierServiceImpl extends AbstractServiceImpl<Courier> implements CourierService {
 }
