@@ -39,7 +39,7 @@ public class LoginMBean implements Serializable {
     private void init() {
         ExternalContext externalContext = FacesContext.getCurrentInstance().getExternalContext();
         HttpSession session = (HttpSession) externalContext.getSession(true);
-        loggedInUser = (User) session.getAttribute("user"); // Adj hozzá egy megfelelő kulcsot, ha a user más néven van tárolva
+        loggedInUser = (User) session.getAttribute("user");// ez a user a login.xhtml-ben lévő user
 
     }
     public void login(String username, String password) {
