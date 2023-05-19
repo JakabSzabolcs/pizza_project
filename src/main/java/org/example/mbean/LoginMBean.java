@@ -35,6 +35,7 @@ public class LoginMBean implements Serializable{
     public String login(String username, String password) {
         User user = userService.findByUsername(username);
         BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
+        
         if (user == null || !passwordEncoder.matches(password, user.getPassword())) {
             FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, "Hibás felhasználónév vagy jelszó!", ""));
             return null;
