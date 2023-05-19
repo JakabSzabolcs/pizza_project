@@ -26,6 +26,7 @@ public class UserDAOImpl extends CoreDAOImpl<User> implements UserDAO {
     @Override
     public void update(User user) {
         user.setPassword(hashPassword(user.getPassword()));
+        em.merge(user);
     }
 
 
