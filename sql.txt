@@ -1,0 +1,25 @@
+select * from pizza;
+
+INSERT INTO Pizza (id, creation_date, modification_date, details, name, price, creatoruser_id, modifieruser_id)
+VALUES
+(1, current_timestamp, current_timestamp, 'Ízletes pizza csirkével és gombával', 'Csirkés-Gombás', 1590, 1, 1),
+(2, current_timestamp, current_timestamp, 'Baconös pizza cheddar sajttal', 'Bacon-Cheddar', 1790, 1, 1),
+(3, current_timestamp, current_timestamp, 'Gyümölcsös pizza sonkával és ananásszal', 'Sonkás-Ananászos', 1490, 1, 1),
+(4, current_timestamp, current_timestamp, 'Vegetáriánus pizza friss zöldségekkel', 'Vegetáriánus', 1390, 1, 1),
+(5, current_timestamp, current_timestamp, 'Sajtos pizza extra sajttal', 'Sajtos', 1290, 1, 1),
+(6, current_timestamp, current_timestamp, 'Kolbászos pizza paprikával és hagymával', 'Kolbászos', 1490, 1, 1),
+(7, current_timestamp, current_timestamp, 'Gyrosos pizza friss salátával és tzatzikivel', 'Gyrosos', 1690, 1, 1),
+(8, current_timestamp, current_timestamp, 'Margaréta pizza friss paradicsommal és bazsalikommal', 'Margaréta', 1190, 1, 1),
+(9, current_timestamp, current_timestamp, 'Hawaii pizza sonkával és ananásszal', 'Hawaii', 1490, 1, 1),
+(10, current_timestamp, current_timestamp, 'Mexikói pizza csilivel és jalapenóval', 'Mexikói', 1590, 1, 1);
+
+select * from users;
+
+INSERT INTO users (id, created_at, password, role, username)
+VALUES
+(1, current_timestamp, '$2a$10$hpVQ8XuB/oCDSSEPGrVC7eTFoBXOGZExH.fpQSDe9pm1bs7wyWpdG', 'ADMIN', 'admin'),
+(2, current_timestamp, '$2a$10$B4wYxnjkaUQH1C3BAJmUxeInQhGz1.zq7Orq4lkQnR.17JlWTKI1W', 'USER', 'valaki'),
+(3, current_timestamp, '$2a$10$xqWP/yEDZJZaBGJWb9yJ1OrF1Xms/Ydss0V.tYF0we/99Z98bn7Uq', 'USER', 'szabesz');
+
+
+// adminnak admin, usersnek user, szabesznek alma123 a jelszó
