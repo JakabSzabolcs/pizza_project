@@ -3,7 +3,7 @@ README
 persistence-unit name = "PizzaPersistence"
 db source name = "PizzaDS"
 
-hardcoded users: 
+update: csak saját database-re van hardcodeolva. hardcoded users: 
 admin - admin
 user - user
 
