@@ -49,7 +49,5 @@ public class UserDAOImpl extends CoreDAOImpl<User> implements UserDAO {
             return null;
         }
     }
-
-
 }
 //$2a$12$mOWbXn5TX6Qi.EJjMcp3LeYp87NVRYUaf9wR3cgxYIxVsjxPRhu9G

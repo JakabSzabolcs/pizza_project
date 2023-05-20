@@ -39,21 +39,29 @@ public class LoginMBean implements Serializable {
     private void init() {
         ExternalContext externalContext = FacesContext.getCurrentInstance().getExternalContext();
         HttpSession session = (HttpSession) externalContext.getSession(true);
-        loggedInUser = (User) session.getAttribute("user");// ez a user a login.xhtml-ben lévő user
+        User adminUser = (User) session.getAttribute("admin");
+        User regularUser = (User) session.getAttribute("user");
 
+        if (adminUser != null) {
+            loggedInUser = adminUser;
+        } else if (regularUser != null) {
+            loggedInUser = regularUser;
+        }
     }
+
     public void login(String username, String password) {
         BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
         User user = userService.findByUsername(username);
         HttpSession session = (HttpSession) FacesContext.getCurrentInstance().getExternalContext().getSession(true);
-        session.setAttribute("user", user);
         if (user != null && passwordEncoder.matches(password, user.getPassword())) {
             String redirectUrl = "";
             FacesMessage message = null;
 
             if (user.getRole().equals(UserRole.ADMIN)) {
+                session.setAttribute("admin", user);
                 redirectUrl = "xhtml/admin.xhtml";
             } else {
+                session.setAttribute("user", user);
                 redirectUrl = "xhtml/user.xhtml";
             }
             try {

@@ -1,4 +1,4 @@
-body {
+.login-body {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -10,3 +10,5 @@ body {
     padding: 2em;
     box-shadow: 0 0 1em rgba(0, 0, 0, 0.1);
 }
+
+
