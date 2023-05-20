@@ -22,4 +22,4 @@ VALUES
 (3, current_timestamp, '$2a$10$xqWP/yEDZJZaBGJWb9yJ1OrF1Xms/Ydss0V.tYF0we/99Z98bn7Uq', 'USER', 'szabesz');
 
 
-// adminnak admin, usersnek user, szabesznek alma123 a jelszó
+// adminnak admin, valakinek user, szabesznek alma123 a jelszó
