@@ -21,7 +21,10 @@ public abstract class AbstractEntity extends CoreEntity{
 
     @ManyToOne
     private User modifierUser;
-
+    @PrePersist
+    protected void onCreate() {
+        creationDate = new Date();
+    }
     public User getCreatorUser() {
         return creatorUser;
     }

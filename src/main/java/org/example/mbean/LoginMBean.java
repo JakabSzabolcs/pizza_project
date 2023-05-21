@@ -59,10 +59,10 @@ public class LoginMBean implements Serializable {
 
             if (user.getRole().equals(UserRole.ADMIN)) {
                 session.setAttribute("admin", user);
-                redirectUrl = "xhtml/admin.xhtml";
+                redirectUrl = "xhtml/admin/adminUsers.xhtml";
             } else {
                 session.setAttribute("user", user);
-                redirectUrl = "xhtml/user.xhtml";
+                redirectUrl = "xhtml/user/user.xhtml";
             }
             try {
                 FacesContext.getCurrentInstance().getExternalContext().redirect(redirectUrl);
@@ -102,10 +102,6 @@ public class LoginMBean implements Serializable {
 
     public UserRole getRole() {
         return role;
-    }
-
-    private String hashPassword(String password) {
-        return BCrypt.withDefaults().hashToString(12, password.toCharArray());
     }
 
     public User getLoggedInUser() {

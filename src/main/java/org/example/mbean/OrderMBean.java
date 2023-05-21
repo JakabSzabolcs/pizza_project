@@ -1,5 +1,7 @@
 package org.example.mbean;
+
 import jdk.jfr.Name;
+import org.apache.xmlbeans.impl.xb.xsdschema.Public;
 import org.example.entity.Order;
 import org.example.entity.Pizza;
 import org.example.service.OrderService;
@@ -26,25 +28,32 @@ public class OrderMBean implements Serializable {
     @Inject
     private PizzaService pizzaService;
 
-    private Pizza selectedPizza;
+    private Pizza selectedPizza = new Pizza();
     private Order newOrder;
-    private List<Pizza> pizzas;
+    private List<Pizza> pizzas = new ArrayList<>();
     private List<Order> orders;
 
     @PostConstruct
     public void init() {
+        load();
         newOrder = new Order();
-        pizzas = new ArrayList<>();
+
+    }
+
+    public void save() {
+        if (newOrder.getId() == null) {
+            orderService.add(newOrder);
+        } else {
+            orderService.update(newOrder);
+        }
+        FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Success", "Successful save: " + newOrder.getId()));
+        load();
+    }
+
+    private void load() {
         orders = orderService.getAll();
     }
 
-    public void addOrder() {
-        newOrder.setPizzas(pizzas);
-        orderService.add(newOrder);
-        newOrder = new Order();
-        pizzas.clear();
-        FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Rendelés sikeresen hozzáadva.", null));
-    }
 
     public void addPizza(Pizza pizza) {
         pizzas.add(pizza);
@@ -54,7 +63,6 @@ public class OrderMBean implements Serializable {
         pizzas.remove(pizza);
     }
 
-    // getterek és setterek
 
     public Order getNewOrder() {
         return newOrder;

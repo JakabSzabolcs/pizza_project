@@ -19,12 +19,12 @@ public class UserServiceImpl extends AbstractServiceImpl<User> implements UserSe
         return userDao.findByUsername(username);
 
     }
-    public static void main(String[] args) {
-        System.out.println(new UserServiceImpl().hashPassword("user"));
-    }
-    private  String hashPassword(String password) {
-        BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
-        return passwordEncoder.encode(password);
-    }
+//    public static void main(String[] args) {
+//        System.out.println(new UserServiceImpl().hashPassword("user"));
+//    }
+//    private  String hashPassword(String password) {
+//        BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
+//        return passwordEncoder.encode(password);
+//    }
 
 }

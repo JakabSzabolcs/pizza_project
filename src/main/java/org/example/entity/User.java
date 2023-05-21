@@ -30,7 +30,7 @@ public class User extends CoreEntity{
     @Enumerated(EnumType.STRING)
     private UserRole role;
 
-    @OneToMany(mappedBy = "creatorUser", cascade = CascadeType.ALL, orphanRemoval = true)
+    @OneToMany(mappedBy = "creatorUser", cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.EAGER)
     private List<Order> orders;
 
     public List<Order> getOrders() {
