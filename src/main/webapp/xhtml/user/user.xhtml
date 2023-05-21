@@ -17,14 +17,14 @@
         <h3>Add New Order</h3>
         <p:panelGrid columns="2">
             <p:outputLabel for="pizza" value="Pizza:" />
-            <p:selectOneMenu id="pizza" value="#{orderMBean.selectedPizza}">
-                <f:selectItems value="#{orderMBean.pizzaService.all}" var="pizza"
+            <p:selectOneMenu id="pizza" value="#{AOrderMBean.selectedPizza}">
+                <f:selectItems value="#{AOrderMBean.pizzaService.all}" var="pizza"
                                itemLabel="#{pizza.name}  -  #{pizza.price}" itemValue="#{pizza.id}" />
             </p:selectOneMenu>
-            <p:commandButton value="Add Pizza" actionListener="#{orderMBean.addPizza(pizza)}" update="orderTable" />
+            <p:commandButton value="Add Pizza" actionListener="#{AOrderMBean.addPizza(pizza)}" update="orderTable" />
         </p:panelGrid>
 
-        <p:dataTable id="orderTable" var="pizza" value="#{orderMBean.pizzas}"
+        <p:dataTable id="orderTable" var="pizza" value="#{AOrderMBean.pizzas}"
                      paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink}"
                      paginator="true" rows="10" styleClass="mt-2">
             <p:column>
@@ -48,7 +48,7 @@
             </p:column>
         </p:dataTable>
 
-        <p:commandButton value="Place Order" actionListener="#{orderMBean.save}" update="messages orderTable" />
+        <p:commandButton value="Place Order" actionListener="#{AOrderMBean.save}" update="messages orderTable" />
     </h:form>
 </h:body>
 </html>

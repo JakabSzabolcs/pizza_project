@@ -7,14 +7,17 @@
       xmlns:f="http://xmlns.jcp.org/jsf/core" lang="en">
 <h:head>
     <title>Admin - Couriers</title>
+    <h:outputStylesheet library="css" name="styles.css" />
 </h:head>
 <h:body>
     <h:form id="courierForm">
         <ui:include src="../menubar.xhtml"/>
         <p:commandButton value="Logout" action="#{loginMBean.logout()}" style="margin: auto"/>
-        <h2>Couriers</h2>
+        <p:commandButton icon="pi pi-plus" value="New" actionListener="#{courierMBean.initNewEntity()}"
+                         update="@form :courierDialog"
+                         oncomplete="PF('courierDialog').show()"/>
 
-        <p:dataTable id="courierTable" value="#{courierMBean.courierList}" var="courier">
+        <p:dataTable id="courierTable" value="#{courierMBean.list}" var="courier">
             <p:column headerText="ID">
                 <h:outputText value="#{courier.id}"/>
             </p:column>
@@ -28,28 +31,29 @@
                 <p:commandButton icon="pi pi-pencil" title="Edit"
                                  action="#{courierMBean.save}" update=":courierForm:courierTable" style="margin: auto"
                 />
-                <p:commandButton icon="pi pi-trash" title="Deletes"
-                                 action="#{courierMBean.remove(courier)}" update=":courierForm:courierTable" style="margin: auto"
+                <p:commandButton icon="pi pi-trash" title="Delete"
+                                 action="#{courierMBean.remove}" update=":courierForm:courierTable" style="margin: auto"
                 />
             </p:column>
         </p:dataTable>
 
-        <h2>Add new Courier</h2>
-
-        <h:panelGrid columns="2">
-            <h:outputLabel for="nameInput" value="Firstname:"/>
-            <p:inputText id="nameInput" value="#{courierMBean.selectedCourier.firstName}" required="true"/>
-
-            <h:outputLabel for="lastNameInput" value="Lastname:"/>
-            <p:inputText id="lastNameInput" value="#{courierMBean.selectedCourier.lastName}" required="true"/>
-            <h:outputLabel value="Phone"/>
-            <p:inputMask value="#{courierMBean.selectedCourier.phoneNumber}" mask="+99 99 999-9999" required="true">
-                <f:validator validatorId="phoneValidator"/>
-                <f:validateRegex pattern="^\+\d{2}\s\d{2}\s\d{3}-\d{4}$"/>
-            </p:inputMask>
-            <p:commandButton value="Add" action="#{courierMBean.save()}" update=":courierForm:courierTable"
-                             process="@this :courierForm"/>
-        </h:panelGrid>
     </h:form>
+    <p:dialog modal="true" id="courierDialog" widgetVar="courierDialog"  closable="true">
+        <h:form id="courierDialogForm">
+            <h:panelGrid columns="2">
+                <h:outputLabel for="nameInput" value="Firstname:"/>
+                <p:inputText id="nameInput" value="#{courierMBean.selectedCourier.firstName}" required="true"/>
+
+                <h:outputLabel for="lastName" value="Lastname:"/>
+                <p:inputText id="lastName" value="#{courierMBean.selectedCourier.lastName}" required="true"/>
+                <h:outputLabel for="phoneNumber" value="Phone"/>
+                <p:inputMask id="phoneNumber" value="#{courierMBean.selectedCourier.phoneNumber}" mask="+99 99 999-9999" required="true">
+                    <f:validator validatorId="phoneValidator"/>
+                    <f:validateRegex pattern="^\+\d{2}\s\d{2}\s\d{3}-\d{4}$"/>
+                </p:inputMask>
+                <p:commandButton value="Add" action="#{courierMBean.save}" update=":courierForm" oncomplete="PF('courierDialog').hide()"/>
+            </h:panelGrid>
+        </h:form>
+    </p:dialog>
 </h:body>
 </html>
