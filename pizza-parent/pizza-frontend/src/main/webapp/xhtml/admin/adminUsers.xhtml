@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:f="http://java.sun.com/jsf/core" xmlns:p="http://primefaces.org/ui"
+      xmlns:h="http://java.sun.com/jsf/html" xmlns:ui="http://java.sun.com/jsf/facelets" xml:lang="en" lang="en">
+<h:head>
+    <title>Admin - Users</title>
+    <h:outputStylesheet library="css" name="styles.css" />
+</h:head>
+<h:body>
+
+    <ui:include src="../menubar.xhtml"/>
+    <h:form id="adminForm">
+        <p:commandButton value="Logout" action="#{loginMBean.logout()}" style="margin: 10px" />
+        <p:commandButton icon="pi pi-plus" value="New" actionListener="#{userMBean.initNewUser()}"
+                         update="@form :userDialog"
+                         oncomplete="PF('userDialog').show()"/>
+
+        <p:toolbarGroup align="right">
+            <p:commandButton rendered="#{userMBean.selectedOrder.id!=null}" value="Remove"
+                             actionListener="#{userMBean.removeOrder()}" update="@form">
+            </p:commandButton>
+            <p:commandButton rendered="#{userMBean.selectedOrder.id!=null}" value="Edit" update="@form :userDialog"
+                             oncomplete="PF('userDialog').show()">
+            </p:commandButton>
+            <p:commandButton value="Save" actionListener="#{userMBean.save()}" update="@form"/>
+        </p:toolbarGroup>
+
+        <p:accordionPanel multiple="true" value="#{userMBean.list}" var="user">
+            <p:tab title="#{user.username}">
+                <p:dataTable value="#{user.orders}" var="order"
+                             paginator="true" selectionMode="single" selection="#{userMBean.selectedOrder}" rowKey="#{order.id}"
+                             paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+                             currentPageReportTemplate="{startRecord}-{endRecord} of {totalRecords} records"
+                             rowsPerPageTemplate="5,10,{ShowAll|'All'}"
+                             styleClass="employeeTable"
+                             headerClass="employeeTableHeader"
+                             rowClasses="employeeTableOddRow,employeeTableEvenRow">
+                    <p:ajax event="rowSelect" update="@form"/>
+                    <p:ajax event="rowUnselect" listener="#{userMBean.initNewOrder()}" update="@form"/>
+                    <p:column headerText="Order ID">
+                        <h:outputText value="#{order.id}" />
+                    </p:column>
+                    <p:column headerText="Delivery Date">
+                        <h:outputText value="#{order.deliveryDate}" />
+                    </p:column>
+                    <p:column headerText="Courier">
+                        <p:selectOneMenu id="selectedCourierId" value="#{orderMBean.selectedCourierId}">
+                            <f:selectItem itemValue="#{null}" itemLabel="Please choose a courier!"/>
+                            <f:selectItems value="#{orderMBean.courierList}" var="courier" itemLabel="#{courier.lastName} #{courier.firstName}"
+                                           itemValue="#{courier.id}"/>
+                        </p:selectOneMenu>
+                    </p:column>
+                    <!-- save button -->
+                    <p:column>
+                        <p:commandButton value="Save" actionListener="#{orderMBean.save()}" update="@form"/>
+                    </p:column>
+                </p:dataTable>
+            </p:tab>
+        </p:accordionPanel>
+    </h:form>
+
+    <p:dialog modal="true" id="userDialog" widgetVar="userDialog"  closable="true">
+        <h:form id="userDialogForm">
+            <p:panelGrid columns="2" id="formPanel" layout="grid" rendered="#{userMBean.inFunction}">
+                <p:outputLabel for="username" value="Username"/>
+                <p:inputText id="username" value="#{userMBean.selectedUser.username}"/>
+                <p:outputLabel for="licensePlateNumber" value="Password"/>
+                <p:inputText id="licensePlateNumber" value="#{userMBean.selectedUser.password}"/>
+                <!-- checkbox -->
+                <p:outputLabel for="admin" value="Admin"/>
+                <p:selectBooleanCheckbox id="admin" value="#{userMBean.admin}"/>
+                <p:commandButton value="Save" process="formPanel" validateClient="true" actionListener="#{userMBean.save()}" update=":adminForm"
+                                 oncomplete="PF('userDialog').hide()">
+                </p:commandButton>
+            </p:panelGrid>
+        </h:form>
+    </p:dialog>
+</h:body>
+</html>
