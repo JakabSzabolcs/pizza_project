@@ -7,6 +7,7 @@ import org.example.service.OrderService;
 import org.example.service.UserService;
 
 import javax.annotation.PostConstruct;
+import javax.ejb.EJB;
 import javax.faces.application.FacesMessage;
 import javax.faces.view.ViewScoped;
 import javax.inject.Inject;
@@ -25,10 +26,10 @@ public class UserMBean implements Serializable {
     private boolean inFunction;
     private boolean isAdmin;
 
-    @Inject
+    @EJB
     private UserService userService;
 
-    @Inject
+    @EJB
     private OrderService orderService;
 
     @PostConstruct
