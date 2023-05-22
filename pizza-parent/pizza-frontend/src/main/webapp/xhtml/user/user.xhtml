@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core" xmlns:p="http://primefaces.org/ui"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets" lang="en">
+<h:head>
+    <title>User Page</title>
+    <h:outputStylesheet library="css" name="styles.css" />
+</h:head>
+<h:body>
+
+    <h:form>
+        <p:commandButton value="Logout" action="#{loginMBean.logout()}" />
+    </h:form>
+    <h:form>
+        <p:growl id="messages" showDetail="true" />
+
+        <h3>Add New Order</h3>
+        <p:panelGrid columns="2">
+            <p:outputLabel for="pizza" value="Pizza:" />
+            <p:selectOneMenu id="pizza" value="#{pizzaMBean.selectedPizza}">
+                <f:selectItems value="#{AOrderMBean.pizzaService.all}" var="pizza"
+                               itemLabel="#{pizza.name}  -  #{pizza.price}" itemValue="#{pizza.id}" />
+            </p:selectOneMenu>
+            <p:commandButton value="Add Pizza" actionListener="#{AOrderMBean.addPizza(pizza)}" update="orderTable" />
+        </p:panelGrid>
+
+        <p:dataTable id="orderTable" var="pizza" value="#{AOrderMBean.pizzas}"
+                     paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink}"
+                     paginator="true" rows="10" styleClass="mt-2">
+            <p:column>
+                <f:facet name="Id">
+                    <h:outputText value="Id"/>
+                </f:facet>
+                <h:outputText value="#{pizza.id}"/>
+            </p:column>
+
+            <p:column>
+                <f:facet name="Name">
+                    <h:outputText value="Name"/>
+                </f:facet>
+                <h:outputText value="#{pizza.name}"/>
+            </p:column>
+            <p:column>
+                <f:facet name="Price">
+                    <h:outputText value="Price"/>
+                </f:facet>
+                <h:outputText value="#{pizza.price}"/>
+            </p:column>
+        </p:dataTable>
+
+        <p:commandButton value="Place Order" actionListener="#{AOrderMBean.save}" update="messages orderTable" />
+    </h:form>
+</h:body>
+</html>
