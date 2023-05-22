@@ -12,7 +12,7 @@
         </locale-config>
 
         <resource-bundle>
-            <base-name>hu.ulyssys.messages</base-name>
+            <base-name>org.example</base-name>
             <var>msg</var>
         </resource-bundle>
     </application>

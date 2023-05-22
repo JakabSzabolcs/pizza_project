@@ -1,0 +1,167 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ArtifactsWorkspaceSettings">
+    <artifacts-to-build>
+      <artifact name="pizza-ear:ear" />
+    </artifacts-to-build>
+  </component>
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="12dc7c4e-fd30-4c5a-a738-cb2072bda7ba" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/pizza-parent/pizza-frontend/src/main/resources/META-INF/beans.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/.gitignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/discord.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/encodings.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/uiDesigner.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/pizza-parent/.gitignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/pizza-parent/pizza-api/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pizza-parent/pizza-api/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pizza-parent/pizza-backend/.gitignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/pizza-parent/pizza-backend/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pizza-parent/pizza-backend/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pizza-parent/pizza-backend/src/main/java/org/example/dao/impl/OrderDAOImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/pizza-parent/pizza-backend/src/main/java/org/example/dao/impl/OrderDAOImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pizza-parent/pizza-backend/src/main/java/org/example/dao/impl/PizzaDAOImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/pizza-parent/pizza-backend/src/main/java/org/example/dao/impl/PizzaDAOImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pizza-parent/pizza-backend/src/main/java/org/example/dao/impl/UserDAOImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/pizza-parent/pizza-backend/src/main/java/org/example/dao/impl/UserDAOImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pizza-parent/pizza-backend/src/main/java/org/example/service/impl/AbstractServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/pizza-parent/pizza-backend/src/main/java/org/example/service/impl/AbstractServiceImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pizza-parent/pizza-backend/src/main/java/org/example/service/impl/UserServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/pizza-parent/pizza-backend/src/main/java/org/example/service/impl/UserServiceImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pizza-parent/pizza-backend/src/main/resources/META-INF/persistence.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pizza-parent/pizza-backend/src/main/resources/META-INF/persistence.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pizza-parent/pizza-ear/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pizza-parent/pizza-ear/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pizza-parent/pizza-frontend/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pizza-parent/pizza-frontend/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pizza-parent/pizza-frontend/src/main/java/org/example/mbean/LoginMBean.java" beforeDir="false" afterPath="$PROJECT_DIR$/pizza-parent/pizza-frontend/src/main/java/org/example/mbean/LoginMBean.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pizza-parent/pizza-frontend/src/main/java/org/example/mbean/admin/CourierMBean.java" beforeDir="false" afterPath="$PROJECT_DIR$/pizza-parent/pizza-frontend/src/main/java/org/example/mbean/admin/CourierMBean.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pizza-parent/pizza-frontend/src/main/java/org/example/mbean/admin/OrderMBean.java" beforeDir="false" afterPath="$PROJECT_DIR$/pizza-parent/pizza-frontend/src/main/java/org/example/mbean/admin/OrderMBean.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pizza-parent/pizza-frontend/src/main/java/org/example/mbean/admin/UserMBean.java" beforeDir="false" afterPath="$PROJECT_DIR$/pizza-parent/pizza-frontend/src/main/java/org/example/mbean/admin/UserMBean.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pizza-parent/pizza-frontend/src/main/java/org/example/mbean/user/PizzaMBean.java" beforeDir="false" afterPath="$PROJECT_DIR$/pizza-parent/pizza-frontend/src/main/java/org/example/mbean/user/PizzaMBean.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pizza-parent/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pizza-parent/pom.xml" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="MarkdownSettingsMigration">
+    <option name="stateVersion" value="1" />
+  </component>
+  <component name="MavenImportPreferences">
+    <option name="generalSettings">
+      <MavenGeneralSettings>
+        <option name="useMavenConfig" value="true" />
+      </MavenGeneralSettings>
+    </option>
+  </component>
+  <component name="ProjectId" id="2Q90yeIWj0mDcVyi4DZN9GTgiZ4" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "WebServerToolWindowFactoryState": "false",
+    "last_opened_file_path": "C:/Egyetem/MUNKA/JEGYZET/pizza_project/pizza-parent",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "project.structure.last.edited": "Project",
+    "project.structure.proportion": "0.15",
+    "project.structure.side.proportion": "0.0",
+    "vue.rearranger.settings.migration": "true"
+  }
+}]]></component>
+  <component name="RunManager">
+    <configuration name="JBoss/WildFly 23.0.2.Final" type="JBossConfiguration" factoryName="Local" APPLICATION_SERVER_NAME="JBoss/WildFly 23.0.2.Final" ALTERNATIVE_JRE_ENABLED="false" nameIsGenerated="true">
+      <option name="UPDATING_POLICY" value="restart-server" />
+      <deployment>
+        <artifact name="pizza-ear:ear">
+          <settings />
+        </artifact>
+      </deployment>
+      <server-settings>
+        <option name="SERVER" />
+        <option name="BINDING_SET_NAME" value="" />
+        <option name="DOMAIN" value="false" />
+        <option name="SERVER_GROUP" value="main-server-group" />
+        <option name="USERNAME" value="" />
+        <option name="CREDENTIAL_ALIAS" />
+      </server-settings>
+      <predefined_log_file enabled="true" id="JBoss" />
+      <RunnerSettings RunnerId="Debug">
+        <option name="DEBUG_PORT" value="54657" />
+      </RunnerSettings>
+      <ConfigurationWrapper VM_VAR="JAVA_OPTS" RunnerId="Cover">
+        <option name="USE_ENV_VARIABLES" value="true" />
+        <STARTUP>
+          <option name="USE_DEFAULT" value="true" />
+          <option name="SCRIPT" value="" />
+          <option name="VM_PARAMETERS" value="" />
+          <option name="PROGRAM_PARAMETERS" value="" />
+        </STARTUP>
+        <SHUTDOWN>
+          <option name="USE_DEFAULT" value="true" />
+          <option name="SCRIPT" value="" />
+          <option name="VM_PARAMETERS" value="" />
+          <option name="PROGRAM_PARAMETERS" value="" />
+        </SHUTDOWN>
+      </ConfigurationWrapper>
+      <ConfigurationWrapper VM_VAR="JAVA_OPTS" RunnerId="Debug">
+        <option name="USE_ENV_VARIABLES" value="true" />
+        <STARTUP>
+          <option name="USE_DEFAULT" value="true" />
+          <option name="SCRIPT" value="" />
+          <option name="VM_PARAMETERS" value="" />
+          <option name="PROGRAM_PARAMETERS" value="" />
+        </STARTUP>
+        <SHUTDOWN>
+          <option name="USE_DEFAULT" value="true" />
+          <option name="SCRIPT" value="" />
+          <option name="VM_PARAMETERS" value="" />
+          <option name="PROGRAM_PARAMETERS" value="" />
+        </SHUTDOWN>
+      </ConfigurationWrapper>
+      <ConfigurationWrapper VM_VAR="JAVA_OPTS" RunnerId="Run">
+        <option name="USE_ENV_VARIABLES" value="true" />
+        <STARTUP>
+          <option name="USE_DEFAULT" value="true" />
+          <option name="SCRIPT" value="" />
+          <option name="VM_PARAMETERS" value="" />
+          <option name="PROGRAM_PARAMETERS" value="" />
+        </STARTUP>
+        <SHUTDOWN>
+          <option name="USE_DEFAULT" value="true" />
+          <option name="SCRIPT" value="" />
+          <option name="VM_PARAMETERS" value="" />
+          <option name="PROGRAM_PARAMETERS" value="" />
+        </SHUTDOWN>
+      </ConfigurationWrapper>
+      <method v="2">
+        <option name="Make" enabled="true" />
+        <option name="BuildArtifacts" enabled="true">
+          <artifact name="pizza-ear:ear" />
+        </option>
+      </method>
+    </configuration>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="12dc7c4e-fd30-4c5a-a738-cb2072bda7ba" name="Changes" comment="" />
+      <created>1684750745359</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1684750745359</updated>
+      <workItem from="1684750747486" duration="33000" />
+      <workItem from="1684751938355" duration="1070000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+</project>

@@ -14,9 +14,8 @@ import javax.inject.Named;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
-
-@Named
 @ViewScoped
+@Named
 public class PizzaMBean implements Serializable {
     private List<Pizza> list = new ArrayList<>();
     private Pizza selectedPizza = new Pizza();

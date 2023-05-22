@@ -14,13 +14,13 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
-@Named
 @ViewScoped
+@Named
 public class CourierMBean implements Serializable {
     private List<Courier> list = new ArrayList<>();
     private Courier selectedCourier = new Courier();
 
-    @EJB
+    @Inject
     private CourierService courierService;
 
     @PostConstruct

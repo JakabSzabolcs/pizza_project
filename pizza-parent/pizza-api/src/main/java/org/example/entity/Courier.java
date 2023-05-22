@@ -6,7 +6,7 @@ import javax.validation.constraints.Size;
 import java.util.Date;
 
 @Entity
-@Table
+@Table(name = "courier")
 public class Courier extends AbstractEntity {
 
     @NotNull

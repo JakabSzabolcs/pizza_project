@@ -8,6 +8,8 @@ import org.example.entity.User;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
 import javax.ejb.Stateless;
+import javax.enterprise.context.ApplicationScoped;
+import javax.faces.view.ViewScoped;
 import javax.persistence.NoResultException;
 
 @Stateless

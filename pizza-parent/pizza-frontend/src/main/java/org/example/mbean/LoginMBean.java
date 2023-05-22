@@ -13,6 +13,9 @@ import javax.faces.context.FacesContext;
 import javax.faces.view.ViewScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
+import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
 import java.io.Serializable;
@@ -21,7 +24,6 @@ import java.io.Serializable;
 @ViewScoped
 @Named
 public class LoginMBean implements Serializable {
-
     @Inject
     private UserService userService;
 

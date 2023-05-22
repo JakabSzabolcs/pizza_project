@@ -6,6 +6,7 @@ import org.example.service.CourierService;
 import org.example.service.OrderService;
 
 import javax.annotation.PostConstruct;
+
 import javax.ejb.EJB;
 import javax.faces.application.FacesMessage;
 
@@ -17,8 +18,8 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
-@Named
 @ViewScoped
+@Named
 public class OrderMBean implements Serializable {
     private List<Order> list = new ArrayList<>();
     private List<Courier> courierList;
@@ -26,10 +27,10 @@ public class OrderMBean implements Serializable {
     private Long selectedCourierId;
 
 
-    @EJB
+    @Inject
     private OrderService orderService;
 
-    @EJB
+    @Inject
     private CourierService courierService;
 
     @PostConstruct

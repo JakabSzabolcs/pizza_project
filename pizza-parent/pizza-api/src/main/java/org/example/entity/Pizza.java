@@ -5,7 +5,7 @@ import javax.validation.constraints.NotNull;
 import java.time.LocalDateTime;
 
 @Entity
-@Table
+@Table(name = "pizza")
 public class Pizza extends AbstractEntity {
 
 

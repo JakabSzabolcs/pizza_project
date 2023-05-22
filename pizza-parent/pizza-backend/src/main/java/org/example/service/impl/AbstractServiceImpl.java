@@ -5,6 +5,7 @@ import org.example.entity.AbstractEntity;
 import org.example.entity.CoreEntity;
 import org.example.service.CoreService;
 
+import javax.ejb.EJB;
 import javax.ejb.TransactionAttribute;
 import javax.ejb.TransactionAttributeType;
 import javax.inject.Inject;
@@ -36,7 +37,6 @@ public abstract class AbstractServiceImpl<T extends CoreEntity> implements CoreS
         entityDAO.remove(entity.getId());
     }
 
-    @TransactionAttribute(TransactionAttributeType.NEVER)
     @Override
     public T findById(Long id) {
         return entityDAO.findById(id);
