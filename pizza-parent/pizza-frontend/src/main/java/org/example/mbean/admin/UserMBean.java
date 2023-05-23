@@ -7,7 +7,6 @@ import org.example.service.OrderService;
 import org.example.service.UserService;
 
 import javax.annotation.PostConstruct;
-import javax.ejb.EJB;
 import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
 import javax.faces.view.ViewScoped;
@@ -16,20 +15,22 @@ import javax.inject.Named;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
+
 @Named
 @ViewScoped
 public class UserMBean implements Serializable {
     private List<User> list = new ArrayList<>();
     private List<Order> orderList;
-    private User selectedUser = new User();
-    private Order selectedOrder = new Order();
+    private User selectedUser;
+    private Long selectedCourierId;
+    private List<User> adminUsers = new ArrayList<>();
     private boolean inFunction;
     private boolean isAdmin;
 
-    @EJB
+    @Inject
     private UserService userService;
 
-    @EJB
+    @Inject
     private OrderService orderService;
 
     @PostConstruct
@@ -46,9 +47,16 @@ public class UserMBean implements Serializable {
         return list;
     }
 
-    public void save(){
+    public void save() {
+        boolean usernameExists = userService.checkUsernameExists(selectedUser.getUsername());
+
+        if (usernameExists) {
+            FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, "Error", "Username already exists: " + selectedUser.getUsername()));
+            return;
+        }
+
         if (selectedUser.getId() == null) {
-            if(isAdmin){
+            if (isAdmin) {
                 selectedUser.setRole(UserRole.ADMIN);
             } else {
                 selectedUser.setRole(UserRole.USER);
@@ -57,14 +65,21 @@ public class UserMBean implements Serializable {
         } else {
             userService.update(selectedUser);
         }
+
         FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Success", "Successful save: " + selectedUser.getUsername()));
         load();
         initNewUser();
+        initNewOrder();
         inFunction = false;
     }
 
     public void initNewUser() {
         selectedUser = new User();
+        inFunction = true;
+    }
+
+    public void initNewOrder() {
+        selectedCourierId = null;
         inFunction = true;
     }
 
@@ -81,15 +96,12 @@ public class UserMBean implements Serializable {
     }
 
     public void removeOrder() {
-        orderService.remove(selectedOrder);
-        load();
-        FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Success", "Successful remove"));
+        if (selectedCourierId != null) {
+            orderService.remove(orderService.findById(selectedCourierId));
+            load();
+            FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Success", "Successful remove"));
+        }
         inFunction = false;
-    }
-
-    public void initNewOrder() {
-        selectedOrder = new Order();
-        inFunction = true;
     }
 
     public void cancel() {
@@ -125,12 +137,17 @@ public class UserMBean implements Serializable {
         isAdmin = admin;
     }
 
-
-    public Order getSelectedOrder() {
-        return selectedOrder;
+    public Long getSelectedCourierId() {
+        return selectedCourierId;
     }
 
-    public void setSelectedOrder(Order selectedOrder) {
-        this.selectedOrder = selectedOrder;
+    public void setSelectedCourierId(Long selectedCourierId) {
+        this.selectedCourierId = selectedCourierId;
     }
+
+
+
+
+
 }
+

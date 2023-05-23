@@ -4,7 +4,7 @@ import org.example.entity.Courier;
 import org.example.service.CourierService;
 
 import javax.annotation.PostConstruct;
-import javax.ejb.EJB;
+
 import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
 import javax.faces.view.ViewScoped;
@@ -33,15 +33,20 @@ public class CourierMBean implements Serializable {
     }
 
     public void save() {
+        if (selectedCourier.getFirstName() == null || selectedCourier.getLastName() == null || selectedCourier.getPhoneNumber() == null) {
+            FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, "Error", "First Name, Last Name, and Phone Number are required."));
+            return;
+        }
+
         if (selectedCourier.getId() == null) {
             courierService.add(selectedCourier);
         } else {
             courierService.update(selectedCourier);
         }
-        FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Success", "Successful save: " + selectedCourier.getFirstName()+" " + selectedCourier.getLastName()));
+        FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Success", "Successful save: " + selectedCourier.getFirstName() + " " + selectedCourier.getLastName()));
         load();
-        initNewEntity();
     }
+
 
     public void initNewEntity() {
         selectedCourier = new Courier();

@@ -4,36 +4,32 @@
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets" lang="en">
 <h:head>
     <title>User Page</title>
-    <h:outputStylesheet library="css" name="styles.css" />
+    <h:outputStylesheet library="css" name="styles.css"/>
+    <p:outputLabel value="Welcome #{loginMBean.loggedInUser.username}"/>
 </h:head>
 <h:body>
-
-    <h:form>
-        <p:commandButton value="Logout" action="#{loginMBean.logout()}" />
-    </h:form>
-    <h:form>
-        <p:growl id="messages" showDetail="true" />
+    <h:form id="mainForm">
+        <p:commandButton value="Logout">
+            <p:ajax event="click" listener="#{loginMBean.logout()}" update="@form"/>
+        </p:commandButton>
 
         <h3>Add New Order</h3>
         <p:panelGrid columns="2">
-            <p:outputLabel for="pizza" value="Pizza:" />
-            <p:selectOneMenu id="pizza" value="#{pizzaMBean.selectedPizza}">
-                <f:selectItems value="#{AOrderMBean.pizzaService.all}" var="pizza"
-                               itemLabel="#{pizza.name}  -  #{pizza.price}" itemValue="#{pizza.id}" />
+            <p:outputLabel for="pizza" value="Pizza:"/>
+            <p:selectOneMenu value="#{pizzaMBean.selectedPizza}" converter="pizzaConverter" id="pizza">
+                <f:selectItem noSelectionOption="true" itemDisabled="true" itemValue="#{null}"
+                              itemLabel="Please choose!"/>
+                <f:selectItems value="#{pizzaMBean.list}" var="pizza" itemLabel="#{pizza.name}"
+                               itemValue="#{pizza.id}"/>
             </p:selectOneMenu>
-            <p:commandButton value="Add Pizza" actionListener="#{AOrderMBean.addPizza(pizza)}" update="orderTable" />
+
+            <p:commandButton value="Add Pizza" actionListener="#{pizzaMBean.addPizzaToOrder()}"
+                             update=":mainForm"/>
         </p:panelGrid>
-
-        <p:dataTable id="orderTable" var="pizza" value="#{AOrderMBean.pizzas}"
-                     paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink}"
-                     paginator="true" rows="10" styleClass="mt-2">
-            <p:column>
-                <f:facet name="Id">
-                    <h:outputText value="Id"/>
-                </f:facet>
-                <h:outputText value="#{pizza.id}"/>
-            </p:column>
-
+        <p:outputLabel value="Current order:"/>
+        <p:dataTable id="currentOrderTable" var="pizza" value="#{pizzaMBean.currentOrder.pizzas}"
+                     paginator="true" rows="10" styleClass="mt-2"
+                     paginatorPosition="bottom">
             <p:column>
                 <f:facet name="Name">
                     <h:outputText value="Name"/>
@@ -41,14 +37,81 @@
                 <h:outputText value="#{pizza.name}"/>
             </p:column>
             <p:column>
+                <f:facet name="Details">
+                    <h:outputText value="Details"/>
+                </f:facet>
+                <h:outputText value="#{pizza.details}"/>
+            </p:column>
+            <p:column>
                 <f:facet name="Price">
                     <h:outputText value="Price"/>
                 </f:facet>
                 <h:outputText value="#{pizza.price}"/>
             </p:column>
+            <p:column>
+                <f:facet name="Delete">
+                    <h:outputText value="Delete"/>
+                </f:facet>
+                <p:commandButton value="Delete" actionListener="#{pizzaMBean.removePizzaFromOrder(pizza)}"
+                                 update=":mainForm"/>
+            </p:column>
         </p:dataTable>
 
-        <p:commandButton value="Place Order" actionListener="#{AOrderMBean.save}" update="messages orderTable" />
+        <p:commandButton value="Place Order" update=":mainForm" oncomplete="PF('informationsDialog').show()"/>
+
+        <p:outputLabel value="Your orders:"/>
+        <p:dataTable id="orderTable" var="order" value="#{pizzaMBean.orderListOfCurrentUser}"
+                     paginator="true" rows="10" styleClass="mt-2"
+                     paginatorPosition="bottom">
+            <p:column>
+                <f:facet name="Name">
+                    <h:outputText value="Id"/>
+                </f:facet>
+                <h:outputText value="#{order.id}"/>
+            </p:column>
+            <p:column>
+                <f:facet name="Details">
+                    <h:outputText value="Delivery Date"/>
+                </f:facet>
+                <h:outputText value="#{order.deliveryDate}"/>
+            </p:column>
+
+            <p:column>
+                <f:facet name="phonenumber">
+                    <h:outputText value="Courier's phonenumber"/>
+                </f:facet>
+                <h:outputText
+                        value="#{order.courier.phoneNumber != null ? order.courier.phoneNumber : 'This order has no courier yet.'}"/>
+            </p:column>
+        </p:dataTable>
+
+
+
+    </h:form>
+
+    <h:form id="pizzaForm">
+        <p:dialog modal="true" id="informationsDialog" widgetVar="informationsDialog" closable="true"
+                  style="margin-inside: 10px">
+            <p:panelGrid columns="2" id="formPanel" layout="grid">
+                <p:outputLabel for="city" value="City"/>
+                <p:inputText id="city" value="#{pizzaMBean.currentOrder.city}"/>
+                <p:outputLabel for="street" value="Street"/>
+                <p:inputText id="street" value="#{pizzaMBean.currentOrder.street}"/>
+                <p:outputLabel for="streetType" value="Street Type"/>
+                <p:selectOneMenu id="streetType" value="#{pizzaMBean.currentOrder.streetType}">
+                    <f:selectItem itemLabel="utca" itemValue="utca"/>
+                    <f:selectItem itemLabel="köz" itemValue="köz"/>
+                    <f:selectItem itemLabel="lugas" itemValue="lugas"/>
+                </p:selectOneMenu>
+                <p:outputLabel for="houseNumber" value="House Number"/>
+                <p:inputText id="houseNumber" value="#{pizzaMBean.currentOrder.houseNumber}"/>
+                <p:outputLabel for="deliveryDate" value="Delivery Date"/>
+                <p:calendar id="deliveryDate" value="#{pizzaMBean.currentOrder.deliveryDate}"/>
+                <p:commandButton value="Done" process="formPanel" validateClient="true"
+                                 actionListener="#{pizzaMBean.saveOrder}" update=":mainForm"
+                                 oncomplete="PF('informationsDialog').hide()"/>
+            </p:panelGrid>
+        </p:dialog>
     </h:form>
 </h:body>
 </html>

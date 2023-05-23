@@ -1,7 +1,10 @@
 package org.example.mbean;
 
+import org.example.entity.Order;
 import org.example.entity.User;
 import org.example.entity.UserRole;
+import org.example.mbean.admin.OrderMBean;
+import org.example.service.OrderService;
 import org.example.service.UserService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
@@ -12,6 +15,7 @@ import javax.faces.application.FacesMessage;
 import javax.faces.context.ExternalContext;
 import javax.faces.context.FacesContext;
 import javax.faces.view.ViewScoped;
+import javax.inject.Inject;
 import javax.inject.Named;
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -32,7 +36,6 @@ public class LoginMBean implements Serializable {
 
     private String username;
     private String password;
-
     private UserRole role;
 
 
@@ -42,7 +45,6 @@ public class LoginMBean implements Serializable {
         HttpSession session = (HttpSession) externalContext.getSession(true);
         User adminUser = (User) session.getAttribute("admin");
         User regularUser = (User) session.getAttribute("user");
-
         if (adminUser != null) {
             loggedInUser = adminUser;
         } else if (regularUser != null) {
@@ -60,10 +62,10 @@ public class LoginMBean implements Serializable {
 
             if (user.getRole().equals(UserRole.ADMIN)) {
                 session.setAttribute("admin", user);
-                redirectUrl = "xhtml/admin/adminUsers.xhtml";
+                redirectUrl = "admin/adminUsers.xhtml";
             } else {
                 session.setAttribute("user", user);
-                redirectUrl = "xhtml/user/user.xhtml";
+                redirectUrl = "user/user.xhtml";
             }
             try {
                 FacesContext.getCurrentInstance().getExternalContext().redirect(redirectUrl);
@@ -79,7 +81,7 @@ public class LoginMBean implements Serializable {
     public void logout() {
         FacesContext.getCurrentInstance().getExternalContext().invalidateSession();
         try {
-            FacesContext.getCurrentInstance().getExternalContext().redirect("../login.xhtml");
+            FacesContext.getCurrentInstance().getExternalContext().redirect("xhtml/login.xhtml");
         } catch (IOException e) {
             e.printStackTrace();
         }

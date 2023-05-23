@@ -8,6 +8,7 @@ import org.example.service.UserService;
 import javax.ejb.EJB;
 import javax.ejb.Stateless;
 import javax.enterprise.context.ApplicationScoped;
+import javax.faces.context.FacesContext;
 import javax.inject.Inject;
 
 @Stateless
@@ -22,6 +23,12 @@ public class UserServiceImpl extends AbstractServiceImpl<User> implements UserSe
     public User findByUsername(String username) {
         return  dao.findByUsername(username);
     }
+
+    @Override
+    public boolean checkUsernameExists(String username) {
+        return dao.findByUsername(username) != null;
+    }
+
 
 
 //    public static void main(String[] args) {

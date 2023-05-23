@@ -4,7 +4,14 @@
               xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee
                                   http://xmlns.jcp.org/xml/ns/javaee/web-facesconfig_2_2.xsd">
 
-
+    <converter>
+        <converter-id>pizzaConverter</converter-id>
+        <converter-class>org.example.converter.PizzaConverter</converter-class>
+    </converter>
+    <converter>
+        <converter-id>courierConverter</converter-id>
+        <converter-class>org.example.converter.CourierConverter</converter-class>
+    </converter>
     <application>
         <locale-config>
             <default-locale>en</default-locale>

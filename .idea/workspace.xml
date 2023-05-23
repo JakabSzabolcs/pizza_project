@@ -10,31 +10,30 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="12dc7c4e-fd30-4c5a-a738-cb2072bda7ba" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/pizza-parent/pizza-frontend/src/main/resources/META-INF/beans.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/.gitignore" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/discord.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/encodings.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/uiDesigner.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/pizza-parent/.gitignore" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/pizza-parent/pizza-api/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pizza-parent/pizza-api/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pizza-parent/pizza-backend/.gitignore" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/pizza-parent/pizza-backend/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pizza-parent/pizza-backend/pom.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/pizza-parent/pizza-frontend/src/main/java/org/example/converter/CourierConverter.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/pizza-parent/pizza-frontend/src/main/java/org/example/converter/PizzaConverter.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/pizza-parent/pizza-frontend/src/main/webapp/xhtml/admin/adminOrders.xhtml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pizza-parent/pizza-api/src/main/java/org/example/entity/Order.java" beforeDir="false" afterPath="$PROJECT_DIR$/pizza-parent/pizza-api/src/main/java/org/example/entity/Order.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pizza-parent/pizza-api/src/main/java/org/example/entity/Pizza.java" beforeDir="false" afterPath="$PROJECT_DIR$/pizza-parent/pizza-api/src/main/java/org/example/entity/Pizza.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pizza-parent/pizza-api/src/main/java/org/example/service/OrderService.java" beforeDir="false" afterPath="$PROJECT_DIR$/pizza-parent/pizza-api/src/main/java/org/example/service/OrderService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pizza-parent/pizza-api/src/main/java/org/example/service/UserService.java" beforeDir="false" afterPath="$PROJECT_DIR$/pizza-parent/pizza-api/src/main/java/org/example/service/UserService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pizza-parent/pizza-backend/src/main/java/org/example/dao/OrderDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/pizza-parent/pizza-backend/src/main/java/org/example/dao/OrderDAO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pizza-parent/pizza-backend/src/main/java/org/example/dao/UserDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/pizza-parent/pizza-backend/src/main/java/org/example/dao/UserDAO.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/pizza-parent/pizza-backend/src/main/java/org/example/dao/impl/OrderDAOImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/pizza-parent/pizza-backend/src/main/java/org/example/dao/impl/OrderDAOImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pizza-parent/pizza-backend/src/main/java/org/example/dao/impl/PizzaDAOImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/pizza-parent/pizza-backend/src/main/java/org/example/dao/impl/PizzaDAOImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pizza-parent/pizza-backend/src/main/java/org/example/dao/impl/UserDAOImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/pizza-parent/pizza-backend/src/main/java/org/example/dao/impl/UserDAOImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pizza-parent/pizza-backend/src/main/java/org/example/service/impl/AbstractServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/pizza-parent/pizza-backend/src/main/java/org/example/service/impl/AbstractServiceImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pizza-parent/pizza-backend/src/main/java/org/example/service/impl/OrderServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/pizza-parent/pizza-backend/src/main/java/org/example/service/impl/OrderServiceImpl.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/pizza-parent/pizza-backend/src/main/java/org/example/service/impl/UserServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/pizza-parent/pizza-backend/src/main/java/org/example/service/impl/UserServiceImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pizza-parent/pizza-backend/src/main/resources/META-INF/persistence.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pizza-parent/pizza-backend/src/main/resources/META-INF/persistence.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pizza-parent/pizza-ear/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pizza-parent/pizza-ear/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pizza-parent/pizza-frontend/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pizza-parent/pizza-frontend/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pizza-parent/pizza-frontend/src/main/java/org/example/filter/AuthenticationFilter.java" beforeDir="false" afterPath="$PROJECT_DIR$/pizza-parent/pizza-frontend/src/main/java/org/example/filter/AuthenticationFilter.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/pizza-parent/pizza-frontend/src/main/java/org/example/mbean/LoginMBean.java" beforeDir="false" afterPath="$PROJECT_DIR$/pizza-parent/pizza-frontend/src/main/java/org/example/mbean/LoginMBean.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/pizza-parent/pizza-frontend/src/main/java/org/example/mbean/admin/CourierMBean.java" beforeDir="false" afterPath="$PROJECT_DIR$/pizza-parent/pizza-frontend/src/main/java/org/example/mbean/admin/CourierMBean.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/pizza-parent/pizza-frontend/src/main/java/org/example/mbean/admin/OrderMBean.java" beforeDir="false" afterPath="$PROJECT_DIR$/pizza-parent/pizza-frontend/src/main/java/org/example/mbean/admin/OrderMBean.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/pizza-parent/pizza-frontend/src/main/java/org/example/mbean/admin/UserMBean.java" beforeDir="false" afterPath="$PROJECT_DIR$/pizza-parent/pizza-frontend/src/main/java/org/example/mbean/admin/UserMBean.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/pizza-parent/pizza-frontend/src/main/java/org/example/mbean/user/PizzaMBean.java" beforeDir="false" afterPath="$PROJECT_DIR$/pizza-parent/pizza-frontend/src/main/java/org/example/mbean/user/PizzaMBean.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pizza-parent/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pizza-parent/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pizza-parent/pizza-frontend/src/main/webapp/WEB-INF/faces-config.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pizza-parent/pizza-frontend/src/main/webapp/WEB-INF/faces-config.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pizza-parent/pizza-frontend/src/main/webapp/login.xhtml" beforeDir="false" afterPath="$PROJECT_DIR$/pizza-parent/pizza-frontend/src/main/webapp/xhtml/login.xhtml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pizza-parent/pizza-frontend/src/main/webapp/xhtml/admin/adminCouriers.xhtml" beforeDir="false" afterPath="$PROJECT_DIR$/pizza-parent/pizza-frontend/src/main/webapp/xhtml/admin/adminCouriers.xhtml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pizza-parent/pizza-frontend/src/main/webapp/xhtml/admin/adminUsers.xhtml" beforeDir="false" afterPath="$PROJECT_DIR$/pizza-parent/pizza-frontend/src/main/webapp/xhtml/admin/adminUsers.xhtml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pizza-parent/pizza-frontend/src/main/webapp/xhtml/menubar.xhtml" beforeDir="false" afterPath="$PROJECT_DIR$/pizza-parent/pizza-frontend/src/main/webapp/xhtml/menubar.xhtml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pizza-parent/pizza-frontend/src/main/webapp/xhtml/user/user.xhtml" beforeDir="false" afterPath="$PROJECT_DIR$/pizza-parent/pizza-frontend/src/main/webapp/xhtml/user/user.xhtml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -72,6 +71,7 @@
     "project.structure.last.edited": "Project",
     "project.structure.proportion": "0.15",
     "project.structure.side.proportion": "0.0",
+    "spring.configuration.checksum": "bcd618d1cd52680bd0f6424172fcb5e1",
     "vue.rearranger.settings.migration": "true"
   }
 }]]></component>
@@ -158,6 +158,7 @@
       <updated>1684750745359</updated>
       <workItem from="1684750747486" duration="33000" />
       <workItem from="1684751938355" duration="1070000" />
+      <workItem from="1684857996633" duration="99000" />
     </task>
     <servers />
   </component>

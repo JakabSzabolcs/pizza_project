@@ -4,6 +4,7 @@ package org.example.entity;
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -16,7 +17,6 @@ public class Order extends AbstractEntity {
     @Column(name = "delivery_date")
     private Date deliveryDate;
 
-    @NotNull
     @ManyToOne
     @JoinColumn(name = "courier_id")
     private Courier courier;
@@ -26,7 +26,7 @@ public class Order extends AbstractEntity {
     @JoinTable(name = "order_pizza",
             joinColumns = @JoinColumn(name = "order_id"),
             inverseJoinColumns = @JoinColumn(name = "pizza_id"))
-    private List<Pizza> pizzas;
+    private List<Pizza> pizzas = new ArrayList<>();
 
     @NotNull
     @Column(name = "city")
