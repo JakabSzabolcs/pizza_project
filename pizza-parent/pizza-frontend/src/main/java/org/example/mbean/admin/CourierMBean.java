@@ -4,7 +4,7 @@ import org.example.entity.Courier;
 import org.example.service.CourierService;
 
 import javax.annotation.PostConstruct;
-
+import java.sql.Timestamp;
 import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
 import javax.faces.view.ViewScoped;
@@ -33,6 +33,7 @@ public class CourierMBean implements Serializable {
     }
 
     public void save() {
+        selectedCourier.setModificationDate(new Timestamp(System.currentTimeMillis()));
         if (selectedCourier.getFirstName() == null || selectedCourier.getLastName() == null || selectedCourier.getPhoneNumber() == null) {
             FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, "Error", "First Name, Last Name, and Phone Number are required."));
             return;

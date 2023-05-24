@@ -51,7 +51,7 @@ public class UserMBean implements Serializable {
         boolean usernameExists = userService.checkUsernameExists(selectedUser.getUsername());
 
         if (usernameExists) {
-            FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, "Error", "Username already exists: " + selectedUser.getUsername()));
+            FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, "Error", "Username already exists"));
             return;
         }
 
@@ -65,8 +65,6 @@ public class UserMBean implements Serializable {
         } else {
             userService.update(selectedUser);
         }
-
-        FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Success", "Successful save: " + selectedUser.getUsername()));
         load();
         initNewUser();
         initNewOrder();

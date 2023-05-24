@@ -23,7 +23,7 @@
                 <p:password id="password" value="#{loginMBean.password}" required="true" label="password" />
 
                 <f:facet name="footer">
-                    <p:commandButton id="loginButton" value="Login" update="growl" actionListener="#{loginMBean.login(loginMBean.username, loginMBean.password)}"/>
+                    <p:commandButton icon="pi pi-sign-in" id="loginButton" value="Login" update="growl" actionListener="#{loginMBean.login(loginMBean.username, loginMBean.password)}"/>
                 </f:facet>
             </h:panelGrid>
         </p:panel>

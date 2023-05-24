@@ -3,29 +3,30 @@
       xmlns:h="http://java.sun.com/jsf/html" xmlns:ui="http://java.sun.com/jsf/facelets" xml:lang="en" lang="en">
 <h:head>
     <title>Admin - Users</title>
-    <h:outputStylesheet library="css" name="styles.css" />
+    <h:outputStylesheet library="css" name="styles.css"/>
 </h:head>
 <h:body>
 
     <ui:include src="../menubar.xhtml"/>
     <h:form id="adminForm">
-        <p:commandButton value="Logout">
-            <p:ajax event="click" listener="#{loginMBean.logout()}" update="@form"/>
-        </p:commandButton>
-        <p:commandButton icon="pi pi-plus" value="New" actionListener="#{userMBean.initNewUser()}"
-                         update="@form :userDialog"
-                         oncomplete="PF('userDialog').show()"/>
-        <p:commandButton icon="pi pi-pencil" value="Edit" actionListener="#{userMBean.initNewUser()}"
-                            update="@form :userDialog"
-                            oncomplete="PF('userDialog').show()" rendered="#{not empty userMBean.selectedUser}"/>
-        <p:commandButton icon="pi pi-trash" value="Delete" actionListener="#{userMBean.remove()}" update="@form"
-                            rendered="#{not empty userMBean.selectedUser}"/>
-
-        <p:toolbarGroup align="right">
-            <p:commandButton rendered="#{not empty userMBean.selectedCourierId}" value="Remove" actionListener="#{userMBean.removeOrder()}" update="@form">
-            </p:commandButton>
-            <p:commandButton value="Save" actionListener="#{userMBean.save()}" update="@form" style="margin: 10px"/>
-        </p:toolbarGroup>
+        <p:toolbar>
+            <p:toolbarGroup>
+                <p:commandButton icon="pi pi-plus" value="New" actionListener="#{userMBean.initNewUser()}"
+                                 update="@form :userDialog"
+                                 oncomplete="PF('userDialog').show()"/>
+                <p:commandButton icon="pi pi-pencil" value="Edit" actionListener="#{userMBean.initNewUser()}"
+                                 update="@form :userDialog"
+                                 oncomplete="PF('userDialog').show()" rendered="#{not empty userMBean.selectedUser}"/>
+                <p:commandButton icon="pi pi-trash" value="Delete" actionListener="#{userMBean.remove()}" update="@form"
+                                 rendered="#{not empty userMBean.selectedUser}"/>
+            </p:toolbarGroup>
+            <p:toolbarGroup>
+                <p:commandButton value="Logout" style="color: #dddddd; background-color: #2f2f2f">
+                    <p:ajax event="click" listener="#{loginMBean.logout()}" update="@form" style="margin: 10px; border-color: #2f2f2f"
+                            icon="pi pi-sign-out"/>
+                </p:commandButton>
+            </p:toolbarGroup>
+        </p:toolbar>
 
         <p:dataTable value="#{userMBean.list}" var="user"
                      paginator="true" selectionMode="single" selection="#{userMBean.selectedUser}"
@@ -50,17 +51,18 @@
 
     </h:form>
 
-    <p:dialog modal="true" id="userDialog" widgetVar="userDialog"  closable="true">
+    <p:dialog modal="true" id="userDialog" widgetVar="userDialog" closable="true">
         <h:form id="userDialogForm">
             <p:panelGrid columns="2" id="formPanel" layout="grid">
                 <p:outputLabel for="username" value="Username"/>
                 <p:inputText id="username" value="#{userMBean.selectedUser.username}"/>
-                <p:outputLabel for="licensePlateNumber" value="Password"/>
-                <p:inputText id="licensePlateNumber" value="#{userMBean.selectedUser.password}"/>
+                <p:outputLabel for="password" value="Password"/>
+                <p:inputText id="password" value="#{userMBean.selectedUser.password}"/>
                 <!-- checkbox -->
                 <p:outputLabel for="admin" value="Admin"/>
-                <p:selectBooleanCheckbox id="admin" value="#{userMBean.admin}"/>
-                <p:commandButton value="Save" process="formPanel" validateClient="true" actionListener="#{userMBean.save()}" update=":adminForm"
+                <p:selectBooleanCheckbox id="admin" value="#{userMBean.selectedUser.role}"/>
+                <p:commandButton value="Save" process="formPanel" validateClient="true"
+                                 actionListener="#{userMBean.save()}" update=":adminForm"
                                  oncomplete="PF('userDialog').hide()">
                 </p:commandButton>
             </p:panelGrid>
