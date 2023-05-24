@@ -15,6 +15,7 @@ import javax.inject.Inject;
 import javax.inject.Named;
 import javax.servlet.http.HttpSession;
 import java.io.Serializable;
+import java.time.LocalDateTime;
 import java.util.List;
 
 @ViewScoped
@@ -22,8 +23,11 @@ import java.util.List;
 public class OrderPizzaMBean implements Serializable {
     private User loggedInUser;
     private List<Order> orderList;//own
-    private List<Pizza> pizzaList;
     private Order currentOrder = new Order();
+    private List<Pizza> pizzaList;
+    private Pizza selectedPizza = new Pizza();
+    private int totalPrice;
+    private LocalDateTime minDate = LocalDateTime.now();
 
     @Inject
     private OrderService orderService;
@@ -46,7 +50,43 @@ public class OrderPizzaMBean implements Serializable {
     }
 
     public void SaveOrder() {
-        orderService.add(currentOrder);
+        if (currentOrder.getPizzas().isEmpty()) {
+            FacesContext.getCurrentInstance().getExternalContext().getSessionMap().put("error", "Please select at least one pizza");
+            return;
+        } else {
+            currentOrder.setCreatorUser(loggedInUser);
+            orderService.add(currentOrder);
+            load();
+        }
+        FacesContext.getCurrentInstance().getExternalContext().getSessionMap().put("success", "Order has been saved successfully");
+        currentOrder = new Order();
+        load();
+    }
+
+    public void addPizzaToOrder(Pizza pizza) {
+        if (pizza != null) {
+            currentOrder.getPizzas().add(pizza);
+        } else FacesContext.getCurrentInstance().getExternalContext().getSessionMap().put("error", "Please select a pizza");
+    }
+
+    public void removePizzaFromOrder(Pizza pizza) {
+        currentOrder.getPizzas().remove(pizza);
+    }
+
+    public void clearOrder() {
+        currentOrder = new Order();
+    }
+
+    public int getTotalPrice() {
+        totalPrice = 0;
+        for (Pizza pizza : currentOrder.getPizzas()) {
+            totalPrice += pizza.getPrice();
+        }
+        return totalPrice;
+    }
+
+    public void initNewPizza() {
+        selectedPizza = new Pizza();
     }
 
     public User getLoggedInUser() {
@@ -71,5 +111,34 @@ public class OrderPizzaMBean implements Serializable {
 
     public void setPizzaList(List<Pizza> pizzaList) {
         this.pizzaList = pizzaList;
+    }
+
+    public Order getCurrentOrder() {
+        return currentOrder;
+    }
+
+    public void setCurrentOrder(Order currentOrder) {
+        this.currentOrder = currentOrder;
+    }
+
+    public Pizza getSelectedPizza() {
+        return selectedPizza;
+    }
+
+    public void setSelectedPizza(Pizza selectedPizza) {
+        this.selectedPizza = selectedPizza;
+    }
+
+
+    public void setTotalPrice(int totalPrice) {
+        this.totalPrice = totalPrice;
+    }
+
+    public LocalDateTime getMinDate() {
+        return minDate;
+    }
+
+    public void setMinDate(LocalDateTime minDate) {
+        this.minDate = minDate;
     }
 }
