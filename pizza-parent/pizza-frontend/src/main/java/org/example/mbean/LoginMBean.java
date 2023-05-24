@@ -73,7 +73,7 @@ public class LoginMBean implements Serializable {
                 e.printStackTrace();
             }
         } else {
-            FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, "Sikertelen bejelentkezés", "Hibás felhasználónév vagy jelszó!"));
+            FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, "Error", "Invalid username or password!"));
         }
 
     }
