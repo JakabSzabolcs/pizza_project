@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core" xmlns:p="http://primefaces.org/ui"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets" lang="en">
+<h:head>
+    <title>User Page</title>
+    <h:outputStylesheet library="css" name="styles.css"/>
+    <p:outputLabel value="Welcome #{loginMBean.loggedInUser.username}"/>
+</h:head>
+<h:body>
+    <h:form id="pizzaForm">
+        <ui:include src="userMenubar.xhtml"/>
+        <p:growl id="growl" showDetail="true" globalOnly="true"/>
+        <div class="row">
+            <div class="col-4">
+                <div class="col-12">
+                    <p:dataTable value="#{orderPizzaMBean.pizzaList}" var="pizza">
+                        <p:column headerText="Product">
+                            <h:outputText value="#{pizza.name}" />
+                        </p:column>
+                        <p:column headerText="Details">
+                            <h:outputText value="#{pizza.details}" />
+                        </p:column>
+                        <p:column headerText="Price">
+                            <h:outputText value="#{pizza.price}">
+                                <f:convertNumber currencySymbol="HUF" type="currency" />
+                            </h:outputText>
+                        </p:column>
+                        <p:column>
+                            <p:commandButton value="Add To Cart" icon="pi pi-shopping-cart"
+                                             actionListener="#{orderPizzaMBean.addPizzaToOrder(pizza)}" update="@form" />
+                        </p:column>
+                    </p:dataTable>
+                </div>
+            </div>
+            <div class="col-6">
+                <div class="col-12">
+                    <h1>Current Order</h1>
+                    <p:dataTable value="#{orderPizzaMBean.currentOrder.pizzas}" var="pizza">
+                        <p:column headerText="Product">
+                            <h:outputText value="#{pizza.name}" />
+                        </p:column>
+                        <p:column headerText="Price">
+                            <h:outputText value="#{pizza.price}">
+                                <f:convertNumber currencySymbol="HUF" type="currency" />
+                            </h:outputText>
+                        </p:column>
+                        <p:column>
+                            <p:commandButton value="Remove" icon="pi pi-minus"
+                                             actionListener="#{orderPizzaMBean.removePizzaFromOrder(pizza)}" update="@form" />
+                        </p:column>
+                    </p:dataTable>
+                    <h:outputText value="Total Price: #{orderPizzaMBean.totalPrice}" style="font-size: 20px">
+                        <f:convertNumber currencySymbol="HUF" type="currency" />
+                    </h:outputText>
+                    <p:toolbar>
+                        <p:toolbarGroup>
+                            <p:commandButton value="Order" oncomplete="PF('informationsDialog').show()"
+                                             icon="pi pi-shopping-cart" update="@form :informationsDialog" />
+                        </p:toolbarGroup>
+                        <p:toolbarGroup align="right">
+                            <p:commandButton value="Clear order" icon="pi pi-trash"
+                                             actionListener="#{orderPizzaMBean.clearOrder()}" update="@form" />
+                        </p:toolbarGroup>
+                    </p:toolbar>
+                </div>
+            </div>
+        </div>
+
+
+    </h:form>
+
+
+    <p:dialog modal="true" id="informationsDialog" widgetVar="informationsDialog" closable="true"
+              style="flex: fit-content">
+        <h:form id="informationsDialogForm">
+            <p:outputLabel value="Please fill the informations below!"/>
+            <p:panelGrid columns="2" id="formPanel" layout="grid">
+                <p:inputText value="#{orderPizzaMBean.currentOrder.city}" placeholder="City"/>
+                <p:inputText value="#{orderPizzaMBean.currentOrder.street}" placeholder="Street"/>
+                <p:selectOneMenu value="#{orderPizzaMBean.currentOrder.streetType}">
+                    <f:selectItem itemLabel="utca" itemValue="utca"/>
+                    <f:selectItem itemLabel="köz" itemValue="köz"/>
+                    <f:selectItem itemLabel="lugas" itemValue="lugas"/>
+                </p:selectOneMenu>
+
+                <p:inputText value="#{orderPizzaMBean.currentOrder.houseNumber}" placeholder="House number"/>
+
+                <p:outputLabel value="Please choose a delivery date!"/>
+
+                <p:datePicker value="#{orderPizzaMBean.currentOrder.deliveryDate}" pattern="dd/MM/yyyy HH:mm"
+                              showTime="true">
+                </p:datePicker>
+                <p:commandButton value="Order!" action="#{orderPizzaMBean.SaveOrder()}"
+                                 oncomplete="PF('informationsDialog').hide()" update=":pizzaForm"/>
+            </p:panelGrid>
+        </h:form>
+    </p:dialog>
+</h:body>
+</html>

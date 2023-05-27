@@ -1,47 +1,49 @@
 <!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml" xmlns:f="http://java.sun.com/jsf/core" xmlns:p="http://primefaces.org/ui"
-      xmlns:h="http://java.sun.com/jsf/html" xmlns:ui="http://java.sun.com/jsf/facelets" xml:lang="en" lang="en">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:f="http://xmlns.jcp.org/jsf/core" xmlns:p="http://primefaces.org/ui"
+      xmlns:h="http://xmlns.jcp.org/jsf/html" xmlns:ui="http://xmlns.jcp.org/jsf/facelets" xml:lang="en" lang="en">
 <h:head>
     <title>Admin - Users</title>
     <h:outputStylesheet library="css" name="styles.css"/>
 </h:head>
 <h:body>
 
-    <ui:include src="../menubar.xhtml"/>
+    <ui:include src="adminMenubar.xhtml"/>
+
     <h:form id="adminForm">
         <p:toolbar>
             <p:toolbarGroup>
                 <p:commandButton icon="pi pi-plus" value="New" actionListener="#{userMBean.initNewUser()}"
-                                 update="@form :userDialog"
+                                 update="@form"
                                  oncomplete="PF('userDialog').show()"/>
                 <p:commandButton icon="pi pi-pencil" value="Edit" actionListener="#{userMBean.initNewUser()}"
-                                 update="@form :userDialog"
-                                 oncomplete="PF('userDialog').show()" rendered="#{not empty userMBean.selectedUser}"/>
-                <p:commandButton icon="pi pi-trash" value="Delete" actionListener="#{userMBean.remove()}" update="@form"
-                                 rendered="#{not empty userMBean.selectedUser}"/>
+                                 update="@form"
+                                 oncomplete="PF('userDialog').show()" rendered="#{userMBean.selectedUser.id != null}"/>
+                <p:commandButton icon="pi pi-trash" value="Delete"
+                                 update="adminForm:confirmRemove"
+                                 oncomplete="PF('confirmRemove').show()" rendered="#{userMBean.selectedUser.id != null}"/>
             </p:toolbarGroup>
             <p:toolbarGroup>
                 <p:commandButton value="Logout" style="color: #dddddd; background-color: #2f2f2f">
-                    <p:ajax event="click" listener="#{loginMBean.logout()}" update="@form" style="margin: 10px; border-color: #2f2f2f"
+                    <p:ajax event="click" listener="#{loginMBean.logout()}" update="adminForm" style="margin: 10px; border-color: #2f2f2f"
                             icon="pi pi-sign-out"/>
                 </p:commandButton>
             </p:toolbarGroup>
         </p:toolbar>
 
-        <p:dataTable value="#{userMBean.list}" var="user"
+        <p:dataTable id="userTable" value="#{userMBean.list}" var="user"
                      paginator="true" selectionMode="single" selection="#{userMBean.selectedUser}"
                      rowKey="#{user.id}"
                      paginatorPosition="bottom"
                      rowsPerPageTemplate="5,10,{ShowAll|'All'}">
-            <p:ajax event="rowSelect" update="@form"/>
-            <p:ajax event="rowUnselect" listener="#{userMBean.initNewUser()}" update="@form"/>
+            <p:ajax event="rowSelect" update="userTable"/>
+            <p:ajax event="rowUnselect" listener="#{userMBean.initNewUser()}" update="userTable"/>
             <p:column headerText="Order ID">
                 <h:outputText value="#{user.id}"/>
             </p:column>
             <p:column headerText="Username">
                 <h:outputText value="#{user.username}"/>
             </p:column>
-            <p:column headerText="Creaton Date">
+            <p:column headerText="Creation Date">
                 <h:outputText value="#{user.createdAt}"/>
             </p:column>
             <p:column headerText="Role">
@@ -53,19 +55,32 @@
 
     <p:dialog modal="true" id="userDialog" widgetVar="userDialog" closable="true">
         <h:form id="userDialogForm">
-            <p:panelGrid columns="2" id="formPanel" layout="grid">
+            <p:panelGrid columns="2" layout="grid">
                 <p:outputLabel for="username" value="Username"/>
                 <p:inputText id="username" value="#{userMBean.selectedUser.username}"/>
                 <p:outputLabel for="password" value="Password"/>
                 <p:inputText id="password" value="#{userMBean.selectedUser.password}"/>
-                <!-- checkbox -->
+
                 <p:outputLabel for="admin" value="Admin"/>
-                <p:selectBooleanCheckbox id="admin" value="#{userMBean.selectedUser.role}"/>
-                <p:commandButton value="Save" process="formPanel" validateClient="true"
-                                 actionListener="#{userMBean.save()}" update=":adminForm"
+                <p:selectBooleanCheckbox id="admin" value="#{userMBean.admin}"/>
+                <p:commandButton value="Save" validateClient="true"
+                                 actionListener="#{userMBean.save()}" update="adminForm:userTable"
                                  oncomplete="PF('userDialog').hide()">
                 </p:commandButton>
             </p:panelGrid>
+        </h:form>
+    </p:dialog>
+
+    <p:dialog modal="true" id="confirmRemove" widgetVar="confirmRemove" closable="true">
+        <h:form id="confirmRemoveForm">
+            <p:outputLabel value="Are you sure you want to delete this user along with all of their orders?"/>
+            <br/>
+            <p:commandButton value="Yes" actionListener="#{userMBean.remove()}"  update="adminForm:userTable"
+                             oncomplete="PF('confirmRemove').hide()">
+            </p:commandButton>
+            <p:commandButton value="No" actionListener="#{userMBean.initNewUser()}"  update="adminForm:userTable"
+                             oncomplete="PF('confirmRemove').hide()" style="margin: 10px">
+            </p:commandButton>
         </h:form>
     </p:dialog>
 </h:body>

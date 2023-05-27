@@ -4,6 +4,8 @@ package org.example.mbean.admin;
 import org.example.entity.Courier;
 import org.example.entity.Order;
 
+import org.example.entity.User;
+import org.example.mbean.LoginMBean;
 import org.example.service.CourierService;
 import org.example.service.OrderService;
 
@@ -21,7 +23,8 @@ import java.util.List;
 
 @ViewScoped
 @Named
-public class OrderMBean implements Serializable {
+public class OrderMBean extends LoginMBean implements Serializable {
+    private User loggedInUser;
     private List<Order> list = new ArrayList<>();
     private List<Courier> courierList;
     private Order selectedOrder = new Order();
@@ -36,32 +39,34 @@ public class OrderMBean implements Serializable {
 
     @PostConstruct
     private void init() {
+        loggedInUser = getLoggedInUser();
         load();
-        courierList = courierService.getAll();
     }
 
     private void load() {
+        courierList = courierService.getAll();
         list = orderService.getAll();
     }
 
 
     public void save() {
 
-        selectedOrder.setModificationDate(new Timestamp(System.currentTimeMillis()));
 
         if (selectedCourierId != null) {
             selectedOrder.setCourier(courierService.findById(selectedCourierId));
         } else {
             selectedOrder.setCourier(null);
         }
-
+        selectedOrder.setModifierUser(loggedInUser);
+        selectedOrder.setModificationDate(new Timestamp(System.currentTimeMillis()));
         if (selectedOrder.getId() == null) {
+            selectedOrder.setCreatorUser(loggedInUser);
             orderService.add(selectedOrder);
         } else {
             orderService.update(selectedOrder);
         }
 
-        FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Success", "Successful save: " + selectedOrder.getId()));
+        infoMessage("Successful save: " + selectedOrder.getId().toString());
         load();
         initNewOrder();
         inFunction = false;
@@ -72,14 +77,6 @@ public class OrderMBean implements Serializable {
         selectedOrder = new Order();
         selectedCourierId = null;
         inFunction = true;
-    }
-
-    public void remove() {
-        orderService.remove(selectedOrder);
-        load();
-        initNewOrder();
-        FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Success", "Successful delete: " + selectedOrder.getId()));
-        inFunction = false;
     }
 
     public Order getSelectedOrder() {

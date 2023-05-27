@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+        PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:f="http://java.sun.com/jsf/core" xmlns:p="http://primefaces.org/ui"
+      xmlns:h="http://java.sun.com/jsf/html" xml:lang="en" lang="en">
+
+<p:menubar>
+        <p:menuitem value="Pizzas" outcome="/xhtml/user/orderPizza.xhtml"/>
+        <p:menuitem value="Order history" outcome="/xhtml/user/orders.xhtml"/>
+</p:menubar>
+<p:toolbarGroup>
+        <p:commandButton value="Logout" style="color: #dddddd; background-color: #2f2f2f">
+                <p:ajax event="click" listener="#{loginMBean.logout()}" update="@form" style="margin: 10px; border-color: #2f2f2f"
+                        icon="pi pi-sign-out"/>
+        </p:commandButton>
+</p:toolbarGroup>
+
+</html>

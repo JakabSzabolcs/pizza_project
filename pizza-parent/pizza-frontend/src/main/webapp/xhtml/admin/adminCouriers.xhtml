@@ -3,38 +3,38 @@
       xmlns:h="http://xmlns.jcp.org/jsf/html"
       xmlns:p="http://primefaces.org/ui"
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
-      xml:lang="en"
-      xmlns:f="http://xmlns.jcp.org/jsf/core" lang="en">
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xml:lang="en" lang="en">
 <h:head>
     <title>Admin - Couriers</title>
     <h:outputStylesheet library="css" name="styles.css"/>
 </h:head>
 <h:body>
-    <ui:include src="../menubar.xhtml"/>
-
     <h:form id="courierForm">
+        <ui:include src="adminMenubar.xhtml"/>
+        <p:growl id="growl" showDetail="true" globalOnly="true"/>
+
         <p:toolbar>
             <p:toolbarGroup>
-
                 <p:commandButton icon="pi pi-plus" value="New" actionListener="#{courierMBean.initNewEntity()}"
                                  update="@form :courierDialog"
                                  oncomplete="PF('courierDialog').show()"/>
-                <p:column style="width:80px; ">
-                    <p:commandButton icon="pi pi-pencil" title="Edit"
-                                     rendered="#{courierMBean.selectedCourier.id != null}"
-                                     update="@form" style="margin: 10px" oncomplete="PF('courierDialog').show()"/>
-                    <p:commandButton icon="pi pi-trash" title="Delete"
-                                     rendered="#{courierMBean.selectedCourier.id != null}"
-                                     action="#{courierMBean.remove}" update="@form" style="margin: 10px"/>
-                </p:column>
+                <p:commandButton icon="pi pi-pencil" value="Edit" actionListener="#{courierMBean.initNewEntity()}"
+                                 update="@form :courierDialog"
+                                 oncomplete="PF('courierDialog').show()" rendered="#{courierMBean.selectedCourier.id != null}"/>
+                <p:commandButton icon="pi pi-trash" value="Delete" action="#{courierMBean.remove}"
+                                 update=":courierForm"
+                                 rendered="#{courierMBean.selectedCourier.id != null}"/>
             </p:toolbarGroup>
             <p:toolbarGroup>
                 <p:commandButton value="Logout" style="color: #dddddd; background-color: #2f2f2f">
-                    <p:ajax event="click" listener="#{loginMBean.logout()}" update="@form" style="margin: 10px; border-color: #2f2f2f"
+                    <p:ajax event="click" listener="#{loginMBean.logout()}" update="@form"
+                            style="margin: 10px; border-color: #2f2f2f"
                             icon="pi pi-sign-out"/>
                 </p:commandButton>
             </p:toolbarGroup>
         </p:toolbar>
+
         <p:dataTable id="table" value="#{courierMBean.list}" var="courier" rows="10"
                      paginator="true" selectionMode="single" selection="#{courierMBean.selectedCourier}"
                      rowKey="#{courier.id}"
@@ -46,6 +46,7 @@
                      rowClasses="employeeTableOddRow,employeeTableEvenRow">
             <p:ajax event="rowSelect" update="@form"/>
             <p:ajax event="rowUnselect" listener="#{courierMBean.initNewEntity()}" update="@form"/>
+
             <p:column headerText="ID">
                 <h:outputText value="#{courier.id}"/>
             </p:column>
@@ -58,12 +59,12 @@
         </p:dataTable>
 
     </h:form>
+
     <p:dialog modal="true" id="courierDialog" widgetVar="courierDialog" closable="true">
         <h:form id="courierDialogForm">
             <h:panelGrid columns="2">
                 <h:outputLabel for="nameInput" value="Firstname:"/>
                 <p:inputText id="nameInput" value="#{courierMBean.selectedCourier.firstName}" required="true"/>
-
                 <h:outputLabel for="lastName" value="Lastname:"/>
                 <p:inputText id="lastName" value="#{courierMBean.selectedCourier.lastName}" required="true"/>
                 <h:outputLabel for="phoneNumber" value="Phone"/>

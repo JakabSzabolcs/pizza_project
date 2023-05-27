@@ -8,7 +8,8 @@
 
 <h:body>
     <h:form id="mainForm">
-        <ui:include src="../menubar.xhtml"/>
+        <ui:include src="adminMenubar.xhtml"/>
+        <p:growl id="growl" showDetail="true" globalOnly="true"/>
         <p:toolbar>
             <p:toolbarGroup>
                 <p:commandButton rendered="#{orderMBean.selectedOrder.id!=null}" value="Edit"

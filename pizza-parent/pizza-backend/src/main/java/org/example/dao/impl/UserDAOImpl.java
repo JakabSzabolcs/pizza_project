@@ -33,6 +33,13 @@ public class UserDAOImpl extends CoreDAOImpl<User> implements UserDAO {
         em.merge(user);
     }
 
+    @Override
+    public void remove(Long id) {
+        User user = findById(id);
+        user.getOrders().forEach(order -> em.remove(order));
+        em.remove(user);
+    }
+
 
     private  String hashPassword(String password) {
         BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();

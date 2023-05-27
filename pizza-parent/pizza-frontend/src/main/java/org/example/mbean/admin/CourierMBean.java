@@ -1,6 +1,8 @@
 package org.example.mbean.admin;
 
 import org.example.entity.Courier;
+import org.example.entity.User;
+import org.example.mbean.LoginMBean;
 import org.example.service.CourierService;
 
 import javax.annotation.PostConstruct;
@@ -16,8 +18,9 @@ import java.util.List;
 
 @ViewScoped
 @Named
-public class CourierMBean implements Serializable {
+public class CourierMBean extends LoginMBean implements Serializable {
     private List<Courier> list = new ArrayList<>();
+    private User loggedInUser;
     private Courier selectedCourier = new Courier();
 
     @Inject
@@ -25,6 +28,7 @@ public class CourierMBean implements Serializable {
 
     @PostConstruct
     private void init() {
+        loggedInUser = getLoggedInUser();
         load();
     }
 
@@ -33,19 +37,22 @@ public class CourierMBean implements Serializable {
     }
 
     public void save() {
-        selectedCourier.setModificationDate(new Timestamp(System.currentTimeMillis()));
+
         if (selectedCourier.getFirstName() == null || selectedCourier.getLastName() == null || selectedCourier.getPhoneNumber() == null) {
-            FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, "Error", "First Name, Last Name, and Phone Number are required."));
-            return;
+            errorMessage("Please fill in all fields.");
         }
 
         if (selectedCourier.getId() == null) {
+            selectedCourier.setCreatorUser(loggedInUser);
             courierService.add(selectedCourier);
         } else {
+            selectedCourier.setModificationDate(new Timestamp(System.currentTimeMillis()));
+            selectedCourier.setModifierUser(loggedInUser);
             courierService.update(selectedCourier);
         }
-        FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Success", "Successful save: " + selectedCourier.getFirstName() + " " + selectedCourier.getLastName()));
+        infoMessage("Courier saved successfully.");
         load();
+        initNewEntity();
     }
 
 
@@ -57,7 +64,7 @@ public class CourierMBean implements Serializable {
         courierService.remove(selectedCourier);
         load();
         initNewEntity();
-        FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Success", "Successful remove"));
+        infoMessage("Courier removed successfully.");
     }
 
     public Courier getSelectedCourier() {

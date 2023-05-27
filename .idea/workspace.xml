@@ -10,11 +10,24 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="12dc7c4e-fd30-4c5a-a738-cb2072bda7ba" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/dataSources.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/pizza-parent/pizza-frontend/src/main/webapp/xhtml/user/orderPizza.xhtml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/pizza-parent/pizza-frontend/src/main/webapp/xhtml/user/orders.xhtml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/pizza-parent/pizza-frontend/src/main/webapp/xhtml/user/userMenubar.xhtml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources/8150e359-5e84-4161-b582-2bcd0031cac7.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources/8150e359-5e84-4161-b582-2bcd0031cac7.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources/8150e359-5e84-4161-b582-2bcd0031cac7/storage_v2/_src_/database/pizzadb.BufW3g/schema/public.abK9xQ.meta" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources/8150e359-5e84-4161-b582-2bcd0031cac7/storage_v2/_src_/database/pizzadb.BufW3g/schema/public.abK9xQ.meta" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pizza-parent/pizza-api/src/main/java/org/example/entity/Order.java" beforeDir="false" afterPath="$PROJECT_DIR$/pizza-parent/pizza-api/src/main/java/org/example/entity/Order.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pizza-parent/pizza-backend/src/main/java/org/example/dao/impl/UserDAOImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/pizza-parent/pizza-backend/src/main/java/org/example/dao/impl/UserDAOImpl.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/pizza-parent/pizza-frontend/src/main/java/org/example/mbean/LoginMBean.java" beforeDir="false" afterPath="$PROJECT_DIR$/pizza-parent/pizza-frontend/src/main/java/org/example/mbean/LoginMBean.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pizza-parent/pizza-frontend/src/main/java/org/example/mbean/admin/CourierMBean.java" beforeDir="false" afterPath="$PROJECT_DIR$/pizza-parent/pizza-frontend/src/main/java/org/example/mbean/admin/CourierMBean.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pizza-parent/pizza-frontend/src/main/java/org/example/mbean/admin/OrderMBean.java" beforeDir="false" afterPath="$PROJECT_DIR$/pizza-parent/pizza-frontend/src/main/java/org/example/mbean/admin/OrderMBean.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pizza-parent/pizza-frontend/src/main/java/org/example/mbean/admin/UserMBean.java" beforeDir="false" afterPath="$PROJECT_DIR$/pizza-parent/pizza-frontend/src/main/java/org/example/mbean/admin/UserMBean.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/pizza-parent/pizza-frontend/src/main/java/org/example/mbean/user/OrderPizzaMBean.java" beforeDir="false" afterPath="$PROJECT_DIR$/pizza-parent/pizza-frontend/src/main/java/org/example/mbean/user/OrderPizzaMBean.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pizza-parent/pizza-frontend/src/main/webapp/xhtml/user/user.xhtml" beforeDir="false" afterPath="$PROJECT_DIR$/pizza-parent/pizza-frontend/src/main/webapp/xhtml/user/user.xhtml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pizza-parent/pizza-frontend/src/main/webapp/xhtml/admin/adminCouriers.xhtml" beforeDir="false" afterPath="$PROJECT_DIR$/pizza-parent/pizza-frontend/src/main/webapp/xhtml/admin/adminCouriers.xhtml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pizza-parent/pizza-frontend/src/main/webapp/xhtml/admin/adminOrders.xhtml" beforeDir="false" afterPath="$PROJECT_DIR$/pizza-parent/pizza-frontend/src/main/webapp/xhtml/admin/adminOrders.xhtml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pizza-parent/pizza-frontend/src/main/webapp/xhtml/admin/adminUsers.xhtml" beforeDir="false" afterPath="$PROJECT_DIR$/pizza-parent/pizza-frontend/src/main/webapp/xhtml/admin/adminUsers.xhtml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pizza-parent/pizza-frontend/src/main/webapp/xhtml/menubar.xhtml" beforeDir="false" afterPath="$PROJECT_DIR$/pizza-parent/pizza-frontend/src/main/webapp/xhtml/admin/adminMenubar.xhtml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pizza-parent/pizza-frontend/src/main/webapp/xhtml/user/user.xhtml" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -44,7 +57,7 @@
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "SHARE_PROJECT_CONFIGURATION_FILES": "true",
     "WebServerToolWindowFactoryState": "false",
-    "last_opened_file_path": "C:/Egyetem/MUNKA/JEGYZET/pizza_project",
+    "last_opened_file_path": "C:/Egyetem/MUNKA/JEGYZET/pizza_project/pizza-parent/pizza-frontend/src/main/webapp/xhtml/user",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
@@ -62,6 +75,14 @@
     ]
   }
 }]]></component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Egyetem\MUNKA\JEGYZET\pizza_project\pizza-parent\pizza-frontend\src\main\webapp\xhtml\user" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Egyetem\MUNKA\JEGYZET\pizza_project\pizza-parent\pizza-frontend\src\main\webapp\xhtml\admin" />
+    </key>
+  </component>
   <component name="RunManager">
     <configuration name="JBoss/WildFly 23.0.2.Final" type="JBossConfiguration" factoryName="Local" APPLICATION_SERVER_NAME="JBoss/WildFly 23.0.2.Final" ALTERNATIVE_JRE_ENABLED="false" nameIsGenerated="true">
       <option name="OPEN_IN_BROWSER_URL" value="http://localhost:8080/xhtml/login.xhtml" />
@@ -153,5 +174,16 @@
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
   </component>
 </project>

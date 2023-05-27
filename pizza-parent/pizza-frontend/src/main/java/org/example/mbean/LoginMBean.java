@@ -11,6 +11,7 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
 import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
+import javax.el.MethodExpression;
 import javax.faces.application.FacesMessage;
 import javax.faces.context.ExternalContext;
 import javax.faces.context.FacesContext;
@@ -36,7 +37,6 @@ public class LoginMBean implements Serializable {
 
     private String username;
     private String password;
-    private UserRole role;
 
 
     @PostConstruct
@@ -65,7 +65,7 @@ public class LoginMBean implements Serializable {
                 redirectUrl = "admin/adminUsers.xhtml";
             } else {
                 session.setAttribute("user", user);
-                redirectUrl = "user/user.xhtml";
+                redirectUrl = "user/orderPizza.xhtml";
             }
             try {
                 FacesContext.getCurrentInstance().getExternalContext().redirect(redirectUrl);
@@ -73,7 +73,7 @@ public class LoginMBean implements Serializable {
                 e.printStackTrace();
             }
         } else {
-            FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, "Error", "Invalid username or password!"));
+            errorMessage("Wrong username or password");
         }
 
     }
@@ -86,6 +86,7 @@ public class LoginMBean implements Serializable {
             e.printStackTrace();
         }
     }
+
 
     public String getUsername() {
         return username;
@@ -103,9 +104,6 @@ public class LoginMBean implements Serializable {
         this.password = password;
     }
 
-    public UserRole getRole() {
-        return role;
-    }
 
     public User getLoggedInUser() {
         return loggedInUser;
@@ -114,4 +112,13 @@ public class LoginMBean implements Serializable {
     public void setLoggedInUser(User loggedInUser) {
         this.loggedInUser = loggedInUser;
     }
+
+    public void errorMessage(String message) {
+        FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, "Error", message));
+    }
+
+    public void infoMessage(String message) {
+        FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Info", message));
+    }
+
 }

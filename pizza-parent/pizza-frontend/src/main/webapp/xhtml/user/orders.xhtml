@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core" xmlns:p="http://primefaces.org/ui"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets" lang="en">
+<h:head>
+    <title>User Page</title>
+    <h:outputStylesheet library="css" name="styles.css"/>
+    <p:outputLabel value="Welcome #{loginMBean.loggedInUser.username}"/>
+</h:head>
+<h:body>
+
+    <h:form id="orderHistoryForm">
+        <ui:include src="userMenubar.xhtml"/>
+        <p:growl id="growl" showDetail="true" globalOnly="true"/>
+
+        <p:dataTable value="#{orderMBean.loggedInUser.orders}" var="order">
+            <p:column>
+                <p:rowToggler/>
+            </p:column>
+            <p:column headerText="City">
+                <h:outputText value="#{order.city}" />
+            </p:column>
+            <p:column headerText="Street">
+                <h:outputText value="#{order.street}" />
+            </p:column>
+            <p:column headerText="Street Type">
+                <h:outputText value="#{order.streetType}" />
+            </p:column>
+            <p:column headerText="House Number">
+                <h:outputText value="#{order.houseNumber}" />
+            </p:column>
+            <p:column headerText="Delivery Date">
+                <h:outputText value="#{order.deliveryDate}">
+                    <f:convertDateTime pattern="dd/MM/yyyy HH:mm" />
+                </h:outputText>
+            </p:column>
+            <p:column headerText="Courier's phone number">
+                <h:outputText value="#{order.courier.phoneNumber}">
+                    <f:convertNumber currencySymbol="HUF" type="currency" />
+                </h:outputText>
+            </p:column>
+            <p:rowExpansion>
+                    <ui:repeat value="#{order.pizzas}" var="pizza">
+
+                        <p:panelGrid columns="3" style="grid: none">
+                            <p:outputLabel value="#{pizza.name}"/>
+                            <p:outputLabel value="#{pizza.details}"/>
+                            <p:outputLabel value="#{pizza.price}">
+                            </p:outputLabel>
+                        </p:panelGrid>
+                    </ui:repeat>
+            </p:rowExpansion>
+        </p:dataTable>
+
+    </h:form>
+</h:body>
+</html>

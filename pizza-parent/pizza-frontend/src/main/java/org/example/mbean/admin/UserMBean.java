@@ -3,6 +3,7 @@ package org.example.mbean.admin;
 import org.example.entity.Order;
 import org.example.entity.User;
 import org.example.entity.UserRole;
+import org.example.mbean.LoginMBean;
 import org.example.service.OrderService;
 import org.example.service.UserService;
 
@@ -18,12 +19,10 @@ import java.util.List;
 
 @Named
 @ViewScoped
-public class UserMBean implements Serializable {
+public class UserMBean extends LoginMBean implements Serializable {
     private List<User> list = new ArrayList<>();
-    private List<Order> orderList;
     private User selectedUser;
     private Long selectedCourierId;
-    private List<User> adminUsers = new ArrayList<>();
     private boolean inFunction;
     private boolean isAdmin;
 
@@ -36,7 +35,6 @@ public class UserMBean implements Serializable {
     @PostConstruct
     private void init() {
         load();
-        orderList = orderService.getAll();
     }
 
     private void load() {
@@ -51,7 +49,7 @@ public class UserMBean implements Serializable {
         boolean usernameExists = userService.checkUsernameExists(selectedUser.getUsername());
 
         if (usernameExists) {
-            FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, "Error", "Username already exists"));
+            errorMessage("Username already exists");
             return;
         }
 
@@ -67,7 +65,6 @@ public class UserMBean implements Serializable {
         }
         load();
         initNewUser();
-        initNewOrder();
         inFunction = false;
     }
 
@@ -76,10 +73,6 @@ public class UserMBean implements Serializable {
         inFunction = true;
     }
 
-    public void initNewOrder() {
-        selectedCourierId = null;
-        inFunction = true;
-    }
 
     public void selectedUser(User user) {
         selectedUser = user;
@@ -89,23 +82,10 @@ public class UserMBean implements Serializable {
         userService.remove(selectedUser);
         load();
         initNewUser();
-        FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Success", "Successful remove"));
+        infoMessage("User removed successfully");
         inFunction = false;
     }
 
-    public void removeOrder() {
-        if (selectedCourierId != null) {
-            orderService.remove(orderService.findById(selectedCourierId));
-            load();
-            FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Success", "Successful remove"));
-        }
-        inFunction = false;
-    }
-
-    public void cancel() {
-        initNewUser();
-        inFunction = false;
-    }
 
     public User getSelectedUser() {
         return selectedUser;
@@ -115,13 +95,6 @@ public class UserMBean implements Serializable {
         this.selectedUser = selectedUser;
     }
 
-    public List<Order> getOrderList() {
-        return orderList;
-    }
-
-    public void setOrderList(List<Order> orderList) {
-        this.orderList = orderList;
-    }
 
     public boolean isInFunction() {
         return inFunction;
