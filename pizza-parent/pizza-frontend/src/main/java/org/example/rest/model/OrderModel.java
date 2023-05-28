@@ -1,50 +1,23 @@
-package org.example.entity;
+package org.example.rest.model;
 
-
-import javax.persistence.*;
-import javax.validation.constraints.NotNull;
-import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
-@Entity
-@Table(name = "orders")
-public class Order extends AbstractEntity {
-
-    @NotNull
-    @Temporal(TemporalType.TIMESTAMP)
-    @Column(name = "delivery_date")
+public class OrderModel extends CoreModel
+{
     private Date deliveryDate;
 
-    @ManyToOne
-    @JoinColumn(name = "courier_id")
-    private Courier courier;
+    private Long courierId;
 
-    @NotNull
-    @ManyToMany(fetch = FetchType.EAGER)
-    @JoinTable(name = "order_pizza",
-            joinColumns = @JoinColumn(name = "order_id"),
-            inverseJoinColumns = @JoinColumn(name = "pizza_id"))
-    private List<Pizza> pizzas = new ArrayList<>();
+    private List<PizzaModel> pizzas;
 
-    @NotNull
-    @Column(name = "city")
     private String city;
 
-    @NotNull
-    @Column(name = "street")
     private String street;
 
-    @NotNull
-    @Column(name = "street_type")
     private String streetType;
 
-    @NotNull
-    @Column(name = "house_number")
     private String houseNumber;
-
-
-
 
     public Date getDeliveryDate() {
         return deliveryDate;
@@ -54,19 +27,19 @@ public class Order extends AbstractEntity {
         this.deliveryDate = deliveryDate;
     }
 
-    public Courier getCourier() {
-        return courier;
+    public Long getCourierId() {
+        return courierId;
     }
 
-    public void setCourier(Courier courier) {
-        this.courier = courier;
+    public void setCourierId(Long courierId) {
+        this.courierId = courierId;
     }
 
-    public List<Pizza> getPizzas() {
+    public List<PizzaModel> getPizzas() {
         return pizzas;
     }
 
-    public void setPizzas(List<Pizza> pizzas) {
+    public void setPizzas(List<PizzaModel> pizzas) {
         this.pizzas = pizzas;
     }
 
