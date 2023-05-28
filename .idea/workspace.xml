@@ -10,27 +10,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="12dc7c4e-fd30-4c5a-a738-cb2072bda7ba" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/pizza-parent/pizza-api/src/main/java/org/example/service/CourierAwareService.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pizza-parent/pizza-backend/src/main/java/org/example/dao/CourierAwareDAO.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pizza-parent/pizza-backend/src/main/java/org/example/dao/impl/CourierAwareDAOImpl.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pizza-parent/pizza-backend/src/main/java/org/example/service/impl/CourierAwareServiceImpl.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pizza-parent/pizza-frontend/src/main/java/org/example/rest/RestApplication.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pizza-parent/pizza-frontend/src/main/java/org/example/rest/endpoint/CoreRestService.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pizza-parent/pizza-frontend/src/main/java/org/example/rest/endpoint/CourierAwareRestService.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pizza-parent/pizza-frontend/src/main/java/org/example/rest/endpoint/CourierRestService.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pizza-parent/pizza-frontend/src/main/java/org/example/rest/model/ApiModel.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pizza-parent/pizza-frontend/src/main/java/org/example/rest/model/CoreModel.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pizza-parent/pizza-frontend/src/main/java/org/example/rest/model/CourierModel.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pizza-parent/pizza-frontend/src/main/java/org/example/rest/model/OrderModel.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pizza-parent/pizza-frontend/src/main/java/org/example/rest/model/PizzaModel.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pizza-parent/pizza-frontend/src/main/java/org/example/rest/request/RestFunctionRequest.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pizza-parent/pizza-frontend/src/main/java/org/example/rest/response/RestFindAllResponse.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pizza-parent/pizza-frontend/src/main/java/org/example/rest/response/RestFindByIdResponse.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pizza-parent/test_courier.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources/8150e359-5e84-4161-b582-2bcd0031cac7.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources/8150e359-5e84-4161-b582-2bcd0031cac7.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pizza-parent/pizza-api/src/main/java/org/example/entity/Courier.java" beforeDir="false" afterPath="$PROJECT_DIR$/pizza-parent/pizza-api/src/main/java/org/example/entity/Courier.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pizza-parent/pizza-api/src/main/java/org/example/entity/Order.java" beforeDir="false" afterPath="$PROJECT_DIR$/pizza-parent/pizza-api/src/main/java/org/example/entity/Order.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pizza-parent/pizza-frontend/src/main/java/org/example/mbean/user/OrderPizzaMBean.java" beforeDir="false" afterPath="$PROJECT_DIR$/pizza-parent/pizza-frontend/src/main/java/org/example/mbean/user/OrderPizzaMBean.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -183,7 +164,7 @@
       <workItem from="1684751938355" duration="1070000" />
       <workItem from="1684857996633" duration="99000" />
       <workItem from="1684958159935" duration="2311000" />
-      <workItem from="1685272021484" duration="7127000" />
+      <workItem from="1685272021484" duration="7624000" />
     </task>
     <servers />
   </component>

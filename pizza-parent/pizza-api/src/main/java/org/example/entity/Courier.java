@@ -3,7 +3,9 @@ package org.example.entity;
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
+import java.util.Collection;
 import java.util.Date;
+import java.util.List;
 import java.util.Objects;
 
 @Entity
@@ -74,6 +76,7 @@ public class Courier extends AbstractEntity {
         result = 31 * result + (getPhoneNumber() != null ? getPhoneNumber().hashCode() : 0);
         return result;
     }
+
 
 
 }

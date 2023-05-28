@@ -6,5 +6,6 @@ import java.util.List;
 
 public interface OrderService extends CoreService<Order>
 {
-    List<Order> getOrdersByUserId(Long id);
+    List<Order> getOrdersByCourierId(Long id);
+
 }

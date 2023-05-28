@@ -13,7 +13,7 @@
         <ui:include src="userMenubar.xhtml"/>
         <p:growl id="growl" showDetail="true" globalOnly="true"/>
 
-        <p:dataTable value="#{orderMBean.loggedInUser.orders}" var="order">
+        <p:dataTable value="#{userOrdersMBean.orderList}" var="order">
             <p:column>
                 <p:rowToggler/>
             </p:column>

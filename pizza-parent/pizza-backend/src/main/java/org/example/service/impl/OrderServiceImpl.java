@@ -18,7 +18,7 @@ public class OrderServiceImpl extends AbstractServiceImpl<Order> implements Orde
 
 
     @Override
-    public List<Order> getOrdersByUserId(Long id) {
-        return dao.getOrdersByUserId(id);
+    public List<Order> getOrdersByCourierId(Long id) {
+        return dao.getOrdersByCourierId(id);
     }
 }

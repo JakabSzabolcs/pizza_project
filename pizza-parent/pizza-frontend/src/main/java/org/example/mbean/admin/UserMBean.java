@@ -29,8 +29,6 @@ public class UserMBean extends LoginMBean implements Serializable {
     @Inject
     private UserService userService;
 
-    @Inject
-    private OrderService orderService;
 
     @PostConstruct
     private void init() {
