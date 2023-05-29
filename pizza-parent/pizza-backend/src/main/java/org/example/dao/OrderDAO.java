@@ -7,5 +7,5 @@ import java.util.List;
 
 public interface OrderDAO extends CoreDAO<Order>
 {
-    List<Order> getOrdersByUserId(Long id);
+    List<Order> getOrdersByCourierId(Long id);
 }

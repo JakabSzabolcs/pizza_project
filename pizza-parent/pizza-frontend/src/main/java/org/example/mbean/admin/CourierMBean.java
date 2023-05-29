@@ -4,6 +4,7 @@ import org.example.entity.Courier;
 import org.example.entity.User;
 import org.example.mbean.LoginMBean;
 import org.example.service.CourierService;
+import org.example.service.OrderService;
 
 import javax.annotation.PostConstruct;
 import java.sql.Timestamp;
@@ -25,6 +26,9 @@ public class CourierMBean extends LoginMBean implements Serializable {
 
     @Inject
     private CourierService courierService;
+
+    @Inject
+    private OrderService orderService;
 
     @PostConstruct
     private void init() {
@@ -61,10 +65,15 @@ public class CourierMBean extends LoginMBean implements Serializable {
     }
 
     public void remove() {
-        courierService.remove(selectedCourier);
-        load();
-        initNewEntity();
-        infoMessage("Courier removed successfully.");
+        if (orderService.getOrdersByCourierId(selectedCourier.getId()).size() > 0) {
+            errorMessage("This courier has orders, cannot delete.");
+        } else {
+            courierService.remove(selectedCourier);
+            load();
+            initNewEntity();
+            infoMessage("Courier removed successfully.");
+
+        }
     }
 
     public Courier getSelectedCourier() {

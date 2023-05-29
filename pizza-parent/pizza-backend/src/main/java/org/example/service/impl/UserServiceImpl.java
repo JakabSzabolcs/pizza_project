@@ -1,18 +1,14 @@
 package org.example.service.impl;
 
-import org.example.dao.CoreDAO;
 import org.example.dao.UserDAO;
 import org.example.entity.User;
 import org.example.service.UserService;
 
-import javax.ejb.EJB;
 import javax.ejb.Stateless;
-import javax.enterprise.context.ApplicationScoped;
-import javax.faces.context.FacesContext;
 import javax.inject.Inject;
 
 @Stateless
-public class UserServiceImpl extends AbstractServiceImpl<User> implements UserService {
+public class UserServiceImpl extends CoreServiceImpl<User> implements UserService {
 
 
     @Inject

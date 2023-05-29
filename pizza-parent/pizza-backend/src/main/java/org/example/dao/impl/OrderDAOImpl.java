@@ -20,8 +20,9 @@ public class OrderDAOImpl extends CoreDAOImpl<Order> implements OrderDAO
 
 
     @Override
-    public List<Order> getOrdersByUserId(Long id) {
-        return em.createQuery("select n from " + getManagedClass().getSimpleName() + " n where n.user.id = :id", getManagedClass())
-                .setParameter("id", id).getResultList();
+    public List<Order> getOrdersByCourierId(Long id) {
+        return em.createQuery("select o from Order o where o.courier.id = :id", Order.class)
+                .setParameter("id", id)
+                .getResultList();
     }
 }

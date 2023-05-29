@@ -1,0 +1,78 @@
+GET http://localhost:8080/api/order/117
+
+###
+
+
+DELETE http://localhost:8080/api/order/109
+Content-Type: application/json
+
+{
+    "creationDate": "2023-05-27T17:13:42.937Z[UTC]",
+    "id": 110,
+    "city": "Budapest",
+    "courierId": 97,
+    "houseNumber": "56546",
+    "pizzas": [
+      {
+        "id": 2,
+        "creationDate": "2023-05-20T12:27:05.86Z[UTC]",
+        "creatorUser": {
+          "id": 1,
+          "createdAt": "2023-05-27T11:27:48.014Z[UTC]",
+          "orders": [],
+          "password": "$2a$10$hpVQ8XuB/oCDSSEPGrVC7eTFoBXOGZExH.fpQSDe9pm1bs7wyWpdG",
+          "role": "ADMIN",
+          "username": "admin"
+        },
+        "modificationDate": "2023-05-20T12:27:05.86Z[UTC]",
+        "modifierUser": {
+          "id": 1,
+          "createdAt": "2023-05-27T11:27:48.014Z[UTC]",
+          "orders": [],
+          "password": "$2a$10$hpVQ8XuB/oCDSSEPGrVC7eTFoBXOGZExH.fpQSDe9pm1bs7wyWpdG",
+          "role": "ADMIN",
+          "username": "admin"
+         }
+    }
+    ],
+        "street": "Alma",
+    "streetType": "lugas"
+}
+
+
+###
+
+POST http://localhost:8080/api/order/110
+Content-Type: application/json
+
+{
+    "creationDate": "2023-05-27T17:13:42.937Z[UTC]",
+    "id": 110,
+    "city": "Budapest",
+    "courierId": 97,
+    "houseNumber": "56546",
+    "pizzas": [
+      {
+        "id": 2,
+        "creationDate": "2023-05-20T12:27:05.86Z[UTC]",
+        "creatorUser": {
+          "id": 1,
+          "createdAt": "2023-05-27T11:27:48.014Z[UTC]",
+          "orders": [],
+          "password": "$2a$10$hpVQ8XuB/oCDSSEPGrVC7eTFoBXOGZExH.fpQSDe9pm1bs7wyWpdG",
+          "role": "ADMIN",
+          "username": "admin"
+        },
+        "modificationDate": "2023-05-20T12:27:05.86Z[UTC]",
+        "modifierUser": {
+          "id": 1,
+          "createdAt": "2023-05-27T11:27:48.014Z[UTC]",
+          "orders": [],
+          "password": "$2a$10$hpVQ8XuB/oCDSSEPGrVC7eTFoBXOGZExH.fpQSDe9pm1bs7wyWpdG",
+          "role": "ADMIN",
+          "username": "admin"
+         }
+    }
+    ],
+        "street": "Alma",
+    "streetType": "lugas"

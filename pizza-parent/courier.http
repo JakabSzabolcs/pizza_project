@@ -1,0 +1,17 @@
+POST http://localhost:8080/api/courier
+Content-Type: application/json
+
+{
+  "model": {
+    "id": 666,
+    "firstName": "Szakab",
+    "lastName": "Jabolcs",
+    "phoneNumber": "+07 40 123-4556"
+  }
+}
+
+
+###
+
+
+GET http://localhost:8080/api/courier/
