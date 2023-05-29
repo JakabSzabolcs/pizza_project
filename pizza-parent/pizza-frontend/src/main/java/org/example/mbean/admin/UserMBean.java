@@ -23,7 +23,6 @@ public class UserMBean extends LoginMBean implements Serializable {
     private List<User> list = new ArrayList<>();
     private User selectedUser;
     private Long selectedCourierId;
-    private boolean inFunction;
     private boolean isAdmin;
 
     @Inject
@@ -63,12 +62,10 @@ public class UserMBean extends LoginMBean implements Serializable {
         }
         load();
         initNewUser();
-        inFunction = false;
     }
 
     public void initNewUser() {
         selectedUser = new User();
-        inFunction = true;
     }
 
 
@@ -81,7 +78,6 @@ public class UserMBean extends LoginMBean implements Serializable {
         load();
         initNewUser();
         infoMessage("User removed successfully");
-        inFunction = false;
     }
 
 
@@ -91,11 +87,6 @@ public class UserMBean extends LoginMBean implements Serializable {
 
     public void setSelectedUser(User selectedUser) {
         this.selectedUser = selectedUser;
-    }
-
-
-    public boolean isInFunction() {
-        return inFunction;
     }
 
     public boolean isAdmin() {

@@ -145,5 +145,11 @@ public class OrderPizzaMBean extends LoginMBean implements Serializable {
         this.totalPrice = totalPrice;
     }
 
+    public PizzaService getPizzaService() {
+        return pizzaService;
+    }
 
+    public void setPizzaService(PizzaService pizzaService) {
+        this.pizzaService = pizzaService;
+    }
 }
