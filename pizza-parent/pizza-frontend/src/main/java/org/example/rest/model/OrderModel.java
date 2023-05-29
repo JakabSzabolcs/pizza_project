@@ -1,5 +1,7 @@
 package org.example.rest.model;
 
+import org.example.entity.Pizza;
+
 import java.util.Date;
 import java.util.List;
 
@@ -9,7 +11,7 @@ public class OrderModel extends CoreModel
 
     private Long courierId;
 
-    private List<PizzaModel> pizzas;
+    private List<Pizza> pizzas;
 
     private String city;
 
@@ -35,11 +37,11 @@ public class OrderModel extends CoreModel
         this.courierId = courierId;
     }
 
-    public List<PizzaModel> getPizzas() {
+    public List<Pizza> getPizzas() {
         return pizzas;
     }
 
-    public void setPizzas(List<PizzaModel> pizzas) {
+    public void setPizzas(List<Pizza> pizzas) {
         this.pizzas = pizzas;
     }
 

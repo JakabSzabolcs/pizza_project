@@ -17,9 +17,11 @@ public abstract class AbstractEntity extends CoreEntity{
     private Date modificationDate;
 
     @ManyToOne
+    @JoinColumn(name = "creator_user",nullable = false)
     private User creatorUser;
 
     @ManyToOne
+    @JoinColumn(name = "modifier_user")
     private User modifierUser;
     @PrePersist
     protected void onCreate() {

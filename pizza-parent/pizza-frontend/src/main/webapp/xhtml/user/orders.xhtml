@@ -42,7 +42,7 @@
             <p:rowExpansion>
                     <ui:repeat value="#{order.pizzas}" var="pizza">
 
-                        <p:panelGrid columns="3" style="grid: none">
+                        <p:panelGrid columns="3" style="grid-template: none ; border: red">
                             <p:outputLabel value="#{pizza.name}"/>
                             <p:outputLabel value="#{pizza.details}"/>
                             <p:outputLabel value="#{pizza.price}">

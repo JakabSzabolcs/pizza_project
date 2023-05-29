@@ -7,7 +7,7 @@ import org.example.service.CourierAwareService;
 import javax.inject.Inject;
 import java.util.List;
 
-public abstract class CourierAwareServiceImpl<T extends AbstractEntity> extends AbstractServiceImpl<T> implements CourierAwareService<T> {
+public abstract class CourierAwareServiceImpl<T extends AbstractEntity> extends CoreServiceImpl<T> implements CourierAwareService<T> {
     @Inject
     private CourierAwareDAO<T> courierAwareDAO;
 

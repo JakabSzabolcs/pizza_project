@@ -1,0 +1,22 @@
+POST http://localhost:8080/api/pizza
+Content-Type: application/json
+
+{
+  "model":
+  {
+    "name": "Songoku",
+    "price": 15600,
+    "details": "Pizza 1 description",
+    "creationDate": "2020-02-01T00:00:00",
+    "modificationDate": "2020-02-02T00:00:00",
+    "modifierUserId": 1
+  }
+}
+
+
+###
+GET http://localhost:8080/api/pizza
+
+###
+
+DELETE http://localhost:8080/api/pizza/1

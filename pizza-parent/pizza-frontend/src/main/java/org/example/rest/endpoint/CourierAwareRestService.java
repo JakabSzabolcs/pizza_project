@@ -26,8 +26,8 @@ public abstract class CourierAwareRestService<T extends AbstractEntity, M extend
     public Response findByCourierId(@PathParam("id") Long courierId) {
 
         List<M> list = new ArrayList<>();
-        service.findByCourierID(courierId).forEach(car -> {
-            list.add(entityToDTO(car));
+        service.findByCourierID(courierId).forEach(courier -> {
+            list.add(entityToDTO(courier));
         });
 
         return Response.ok(new RestFindAllResponse<>(list)).build();

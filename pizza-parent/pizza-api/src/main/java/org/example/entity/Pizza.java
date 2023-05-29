@@ -9,13 +9,13 @@ import java.util.Objects;
 @Table(name = "pizza")
 public class Pizza extends AbstractEntity {
 
-
-    @Column(name = "name")
+    @NotNull
+    @Column(name = "name", length = 200)
     private String name;
-
-    @Column(name = "details")
+    @NotNull
+    @Column(name = "details", length = 500)
     private String details;
-
+    @NotNull
     @Column(name = "price")
     private Integer price;
 

@@ -1,7 +1,32 @@
-{
-  "id": 5,
-  "firstName": "John",
+[
+  {
+    "id": 5,
+    "creationDate": "2020-02-01T00:00:00",
+    "modificationDate": "2020-02-02T00:00:00",
+    "creatorUserId": 1,
+    "modifierUserId": 1,
+    "firstName": "John",
     "lastName": "Doe",
-  "phoneNumber": "+36252845358",
-  "orders"
-}
+    "phoneNumber": "+36252845358"
+  },
+  {
+    "id": 6,
+    "creationDate": "2020-02-01T00:00:00",
+    "modificationDate": "2020-02-02T00:00:00",
+    "creatorUserId": 1,
+    "modifierUserId": 1,
+    "firstName": "Jane",
+    "lastName": "Doe",
+    "phoneNumber": "+36252845358"
+  },
+  {
+    "id": 7,
+    "creationDate": "2020-02-01T00:00:00",
+    "modificationDate": "2020-02-02T00:00:00",
+    "creatorUserId": 1,
+    "modifierUserId": 1,
+    "firstName": "John",
+    "lastName": "Smith",
+    "phoneNumber": "+36252845358"
+  }
+]

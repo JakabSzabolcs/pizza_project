@@ -86,14 +86,14 @@ public abstract class CoreRestService<T extends CoreEntity, M extends ApiModel> 
             return Response.status(Response.Status.BAD_REQUEST).build();
         }
 
-        T shi = coreService.findById(request.getModel().getId());
-        if (shi == null) {
+        T entity = coreService.findById(request.getModel().getId());
+        if (entity == null) {
             return Response.status(Response.Status.NOT_FOUND).build();
         }
-        dtoToEntity(shi, request.getModel());
-        coreService.update(shi);
+        dtoToEntity(entity, request.getModel());
+        coreService.update(entity);
 
-        return Response.ok(new RestFindByIdResponse<>(entityToDTO(shi))).build();
+        return Response.ok(new RestFindByIdResponse<>(entityToDTO(entity))).build();
 
     }
 
@@ -110,7 +110,7 @@ public abstract class CoreRestService<T extends CoreEntity, M extends ApiModel> 
     }
     protected abstract T dtoToEntity(T entity, M model);
 
-    //mapstruct
+
     protected abstract M entityToDTO(T entity);
 
     protected abstract Class<T> getManagedClass();

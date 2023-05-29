@@ -2,10 +2,8 @@ package org.example.rest.model;
 
 import org.example.entity.User;
 
-import javax.persistence.Column;
-import javax.persistence.ManyToOne;
-import javax.persistence.Temporal;
-import javax.persistence.TemporalType;
+import javax.json.bind.annotation.JsonbDateFormat;
+
 import java.util.Date;
 
 public class CoreModel implements ApiModel{

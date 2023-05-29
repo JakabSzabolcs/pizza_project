@@ -1,5 +1,7 @@
 package org.example.rest.response;
 
+import java.util.List;
+
 public class RestFindAllResponse<T> {
     private java.util.List<T> models;
 
@@ -10,7 +12,7 @@ public class RestFindAllResponse<T> {
         this.models = models;
     }
 
-    public java.util.List<T> getModels(){
+    public List<T> getModels(){
         return models;
     }
 
