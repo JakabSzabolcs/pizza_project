@@ -16,7 +16,7 @@
                                  update="@form"
                                  oncomplete="PF('userDialog').show()"/>
                 <p:commandButton icon="pi pi-pencil" value="Edit" actionListener="#{userMBean.initNewUser()}"
-                                 update="@form"
+                                 update="@form :adminForm"
                                  oncomplete="PF('userDialog').show()" rendered="#{userMBean.selectedUser.id != null}"/>
                 <p:commandButton icon="pi pi-trash" value="Delete"
                                  update="adminForm:confirmRemove"
@@ -50,9 +50,7 @@
                 <h:outputText value="#{user.role}"/>
             </p:column>
         </p:dataTable>
-
     </h:form>
-
     <p:dialog modal="true" id="userDialog" widgetVar="userDialog" closable="true">
         <h:form id="userDialogForm">
             <p:panelGrid columns="2" layout="grid">

@@ -15,7 +15,9 @@
 
         <p:dataTable value="#{userOrdersMBean.orderList}" var="order">
             <p:column>
-                <p:rowToggler/>
+                <p:rowToggler>
+                    <h:outputText value="+" />
+                </p:rowToggler>
             </p:column>
             <p:column headerText="City">
                 <h:outputText value="#{order.city}" />
@@ -40,15 +42,19 @@
                 </h:outputText>
             </p:column>
             <p:rowExpansion>
-                    <ui:repeat value="#{order.pizzas}" var="pizza">
-
-                        <p:panelGrid columns="3" style="grid-template: none ; border: red">
-                            <p:outputLabel value="#{pizza.name}"/>
-                            <p:outputLabel value="#{pizza.details}"/>
-                            <p:outputLabel value="#{pizza.price}">
-                            </p:outputLabel>
-                        </p:panelGrid>
-                    </ui:repeat>
+                    <p:dataTable value="#{order.pizzas}" var="pizza">
+                        <p:column>
+                            <h:outputText value="#{pizza.name}" />
+                        </p:column>
+                        <p:column>
+                            <h:outputText value="#{pizza.details}" />
+                        </p:column>
+                        <p:column>
+                            <h:outputText value="#{pizza.price}">
+                                <f:convertNumber currencySymbol="HUF" type="currency" />
+                            </h:outputText>
+                        </p:column>
+                    </p:dataTable>
             </p:rowExpansion>
         </p:dataTable>
 

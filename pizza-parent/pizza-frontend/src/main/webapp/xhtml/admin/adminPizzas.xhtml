@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:f="http://java.sun.com/jsf/core" xmlns:p="http://primefaces.org/ui"
+      xmlns:h="http://java.sun.com/jsf/html" xmlns:ui="http://java.sun.com/jsf/facelets" xml:lang="en" lang="en">
+<h:head>
+    <title>Admin - Orders</title>
+    <h:outputStylesheet library="css" name="styles.css"/>
+</h:head>
+<h:body>
+    <h:form id="pizzaForm">
+        <ui:include src="adminMenubar.xhtml"/>
+        <p:growl id="growl" showDetail="true" globalOnly="true"/>
+        <p:toolbarGroup>
+            <p:commandButton icon="pi pi-plus" value="New" actionListener="#{pizzaMBean.initNewPizza()}"
+                             update="@form :pizzaDialog"
+                             oncomplete="PF('pizzaDialog').show()"/>
+            <p:commandButton icon="pi pi-pencil" value="Edit"
+                             update="@form :pizzaDialog"
+                             oncomplete="PF('pizzaDialog').show()" rendered="#{pizzaMBean.selectedPizza.id != null}"/>
+            <p:commandButton icon="pi pi-trash" value="Delete" action="#{pizzaMBean.remove()}"
+                             update="@form :pizzaForm"
+                             rendered="#{pizzaMBean.selectedPizza.id != null}"/>
+        </p:toolbarGroup>
+        <p:toolbarGroup>
+            <p:commandButton value="Logout">
+                <p:ajax event="click" listener="#{loginMBean.logout()}" update="@form"
+                        style="margin: 10px; border-color: #2f2f2f"
+                        icon="pi pi-sign-out"/>
+            </p:commandButton>
+        </p:toolbarGroup>
+        <p:dataTable id="table" value="#{pizzaMBean.pizzaList}" var="pizza" rows="10"
+                     paginator="true" selectionMode="single" selection="#{pizzaMBean.selectedPizza}"
+                     rowKey="#{pizza.id}"
+                     paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+                     rowsPerPageTemplate="5,10,15"
+                     paginatorPosition="bottom">
+            <p:ajax event="rowSelect" update="@form"/>
+            <p:ajax event="rowUnselect" listener="#{pizzaMBean.initNewPizza()}" update="@form"/>
+
+            <p:column headerText="ID">
+                <h:outputText value="#{pizza.id}"/>
+            </p:column>
+            <p:column headerText="Name">
+                <h:outputText value="#{pizza.name}"/>
+            </p:column>
+            <p:column headerText="Details">
+                <h:outputText value="#{pizza.details}"/>
+            </p:column>
+            <p:column headerText="Price">
+                <h:outputText value="#{pizza.price}"/>
+            </p:column>
+        </p:dataTable>
+
+    </h:form>
+
+    <p:dialog modal="true" id="pizzaDialog" widgetVar="pizzaDialog" closable="true">
+        <h:form id="pizzaDialogForm">
+            <h:panelGrid columns="2">
+                <h:outputLabel for="name" value="Name:"/>
+                <p:inputText id="name" value="#{pizzaMBean.selectedPizza.name}" required="true"/>
+                <h:outputLabel for="details" value="Details:"/>
+                <p:inputTextarea id="details" rows="5" cols="30" counter="display" maxlength="500"
+                                 counterTemplate="{0}." autoResize="false" value="#{pizzaMBean.selectedPizza.details}"/>
+                <h:outputLabel for="display" value="Characters Remaining:"/>
+                <h:outputText id="display" class="block" />
+                <h:outputLabel for="price" value="Price"/>
+                <p:inputText id="price" value="#{pizzaMBean.selectedPizza.price}" required="true"/>
+                <p:commandButton value="Save" action="#{pizzaMBean.save}" update=":pizzaForm"
+                                 oncomplete="PF('pizzaDialog').hide()"/>
+            </h:panelGrid>
+        </h:form>
+    </p:dialog>
+</h:body>
+</html>

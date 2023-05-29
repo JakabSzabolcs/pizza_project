@@ -19,7 +19,7 @@
                 <p:commandButton icon="pi pi-plus" value="New" actionListener="#{courierMBean.initNewEntity()}"
                                  update="@form :courierDialog"
                                  oncomplete="PF('courierDialog').show()"/>
-                <p:commandButton icon="pi pi-pencil" value="Edit" actionListener="#{courierMBean.initNewEntity()}"
+                <p:commandButton icon="pi pi-pencil" value="Edit"
                                  update="@form :courierDialog"
                                  oncomplete="PF('courierDialog').show()" rendered="#{courierMBean.selectedCourier.id != null}"/>
                 <p:commandButton icon="pi pi-trash" value="Delete" action="#{courierMBean.remove}"
@@ -43,7 +43,8 @@
                      rowsPerPageTemplate="5,10,{ShowAll|'All'}"
                      styleClass="employeeTable"
                      headerClass="employeeTableHeader"
-                     rowClasses="employeeTableOddRow,employeeTableEvenRow">
+                     rowClasses="employeeTableOddRow,employeeTableEvenRow"
+                     paginatorPosition="bottom">
             <p:ajax event="rowSelect" update="@form"/>
             <p:ajax event="rowUnselect" listener="#{courierMBean.initNewEntity()}" update="@form"/>
 
