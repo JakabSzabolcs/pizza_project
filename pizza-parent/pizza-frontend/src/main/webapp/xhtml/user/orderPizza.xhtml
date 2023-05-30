@@ -10,6 +10,13 @@
 <h:body>
     <h:form id="pizzaForm">
         <ui:include src="userMenubar.xhtml"/>
+        <p:toolbarGroup>
+            <p:commandButton value="Logout" style="color: midnightblue; background-color: ghostwhite">
+                <p:ajax event="click" listener="#{loginMBean.logout()}" update="@form"
+                        style="margin: 10px; border-color: #midnghtblue"
+                        icon="pi pi-sign-out"/>
+            </p:commandButton>
+        </p:toolbarGroup>
         <p:growl id="growl" showDetail="true" globalOnly="true"/>
         <div class="row">
             <div class="col-4">

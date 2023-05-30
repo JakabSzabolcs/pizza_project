@@ -21,7 +21,6 @@ import java.util.List;
 @Named
 public class CourierMBean extends LoginMBean implements Serializable {
     private List<Courier> list = new ArrayList<>();
-    private User loggedInUser;
     private Courier selectedCourier = new Courier();
 
     @Inject
@@ -32,7 +31,6 @@ public class CourierMBean extends LoginMBean implements Serializable {
 
     @PostConstruct
     private void init() {
-        loggedInUser = getLoggedInUser();
         load();
     }
 
@@ -47,11 +45,11 @@ public class CourierMBean extends LoginMBean implements Serializable {
         }
 
         if (selectedCourier.getId() == null) {
-            selectedCourier.setCreatorUser(loggedInUser);
+            selectedCourier.setCreatorUser(getLoggedInUser());
             courierService.add(selectedCourier);
         } else {
             selectedCourier.setModificationDate(new Timestamp(System.currentTimeMillis()));
-            selectedCourier.setModifierUser(loggedInUser);
+            selectedCourier.setModifierUser(getLoggedInUser());
             courierService.update(selectedCourier);
         }
         infoMessage("Courier saved successfully.");

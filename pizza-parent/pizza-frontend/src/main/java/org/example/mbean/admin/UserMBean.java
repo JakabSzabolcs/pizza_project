@@ -21,7 +21,7 @@ import java.util.List;
 @ViewScoped
 public class UserMBean extends LoginMBean implements Serializable {
     private List<User> list = new ArrayList<>();
-    private User selectedUser;
+    private User selectedUser = new User();
     private Long selectedCourierId;
     private boolean isAdmin;
 
@@ -62,6 +62,7 @@ public class UserMBean extends LoginMBean implements Serializable {
         }
         load();
         initNewUser();
+        infoMessage("User saved successfully");
     }
 
     public void initNewUser() {

@@ -9,11 +9,4 @@
         <p:menuitem value="Pizzas" outcome="/xhtml/user/orderPizza.xhtml"/>
         <p:menuitem value="Order history" outcome="/xhtml/user/orders.xhtml"/>
 </p:menubar>
-<p:toolbarGroup>
-        <p:commandButton value="Logout" style="color: #dddddd; background-color: #2f2f2f" >
-                <p:ajax event="click" listener="#{loginMBean.logout()}" update="@form" style="margin: 10px; border-color: #2f2f2f"
-                        icon="pi pi-sign-out"/>
-        </p:commandButton>
-</p:toolbarGroup>
-
 </html>

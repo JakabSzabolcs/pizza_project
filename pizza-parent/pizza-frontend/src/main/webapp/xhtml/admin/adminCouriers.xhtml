@@ -21,15 +21,18 @@
                                  oncomplete="PF('courierDialog').show()"/>
                 <p:commandButton icon="pi pi-pencil" value="Edit"
                                  update="@form :courierDialog"
-                                 oncomplete="PF('courierDialog').show()" rendered="#{courierMBean.selectedCourier.id != null}"/>
+                                 oncomplete="PF('courierDialog').show()"
+                                 rendered="#{courierMBean.selectedCourier.id != null}"/>
                 <p:commandButton icon="pi pi-trash" value="Delete" action="#{courierMBean.remove}"
                                  update=":courierForm"
                                  rendered="#{courierMBean.selectedCourier.id != null}"/>
+                <p:commandButton id="columntToggler" icon="pi pi-table"/>
+                <p:columnToggler trigger="columntToggler" datasource="table"/>
             </p:toolbarGroup>
             <p:toolbarGroup>
-                <p:commandButton value="Logout" style="color: #dddddd; background-color: #2f2f2f">
+                <p:commandButton value="Logout" style="color: midnightblue; background-color: ghostwhite">
                     <p:ajax event="click" listener="#{loginMBean.logout()}" update="@form"
-                            style="margin: 10px; border-color: #2f2f2f"
+                            style="margin: 10px; border-color: #midnghtblue"
                             icon="pi pi-sign-out"/>
                 </p:commandButton>
             </p:toolbarGroup>
@@ -48,9 +51,19 @@
             <p:ajax event="rowSelect" update="@form"/>
             <p:ajax event="rowUnselect" listener="#{courierMBean.initNewEntity()}" update="@form"/>
 
-            <p:column headerText="ID">
+            <p:column headerText="ID" toggleable="false">
                 <h:outputText value="#{courier.id}"/>
             </p:column>
+            <p:column headerText="Created by">
+                <h:outputText value="#{courier.creatorUser.username}"/>
+            </p:column>
+            <p:column headerText="Created at">
+                <h:outputText value="#{courier.creationDate}"/>
+            </p:column>
+            <p:column headerText="Modified">
+                <h:outputText value="#{courier.modificationDate} - #{courier.modifierUser.username}"/>
+            </p:column>
+
             <p:column headerText="Name">
                 <h:outputText value="#{courier.firstName} #{courier.lastName}"/>
             </p:column>

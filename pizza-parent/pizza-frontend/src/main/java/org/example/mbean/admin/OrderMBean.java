@@ -24,7 +24,6 @@ import java.util.List;
 @ViewScoped
 @Named
 public class OrderMBean extends LoginMBean implements Serializable {
-    private User loggedInUser;
     private List<Order> list = new ArrayList<>();
     private List<Courier> courierList;
     private Order selectedOrder = new Order();
@@ -39,7 +38,6 @@ public class OrderMBean extends LoginMBean implements Serializable {
 
     @PostConstruct
     private void init() {
-        loggedInUser = getLoggedInUser();
         load();
     }
 
@@ -57,10 +55,10 @@ public class OrderMBean extends LoginMBean implements Serializable {
         } else {
             selectedOrder.setCourier(null);
         }
-        selectedOrder.setModifierUser(loggedInUser);
+        selectedOrder.setModifierUser(getLoggedInUser());
         selectedOrder.setModificationDate(new Timestamp(System.currentTimeMillis()));
         if (selectedOrder.getId() == null) {
-            selectedOrder.setCreatorUser(loggedInUser);
+            selectedOrder.setCreatorUser(getLoggedInUser());
             orderService.add(selectedOrder);
         } else {
             orderService.update(selectedOrder);
