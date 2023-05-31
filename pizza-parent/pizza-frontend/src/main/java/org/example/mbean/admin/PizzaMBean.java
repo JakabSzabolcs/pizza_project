@@ -58,7 +58,7 @@ public class PizzaMBean extends LoginMBean implements Serializable {
             load();
             initNewPizza();
         } catch (Exception e) {
-            errorMessage("Pizza cannot be removed.");
+            errorMessage("Pizza cannot be removed, because it is used in orders.");
         }
     }
 
