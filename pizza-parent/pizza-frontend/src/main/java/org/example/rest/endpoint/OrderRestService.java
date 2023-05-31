@@ -5,6 +5,7 @@ import org.example.entity.Pizza;
 import org.example.rest.model.OrderModel;
 import org.example.rest.model.PizzaModel;
 import org.example.service.CourierService;
+import org.example.service.UserService;
 
 import javax.inject.Inject;
 import javax.ws.rs.Path;
@@ -16,6 +17,11 @@ public class OrderRestService extends CoreRestService<Order, OrderModel>{
     @Inject
     private CourierService courierService;
 
+    @Inject
+    private UserService userService;
+
+
+
     @Override
     protected Order dtoToEntity(Order entity, OrderModel model) {
         entity.setCreationDate(model.getCreationDate());
@@ -23,7 +29,12 @@ public class OrderRestService extends CoreRestService<Order, OrderModel>{
         entity.setStreet(model.getStreet());
         entity.setStreetType(model.getStreetType());
         entity.setHouseNumber(model.getHouseNumber());
-        entity.setCourier(courierService.findById(model.getCourierId()));
+        entity.setCourier(courierService.findById(model.getCourier().getId()));
+        entity.setPizzas(model.getPizzas());
+        entity.setModifierUser(userService.findById(model.getModifierUserId()));
+        entity.setModificationDate(model.getModificationDate());
+        entity.setCourier(courierService.findById(model.getCourier().getId()));
+
         return entity;
     }
 
@@ -36,8 +47,10 @@ public class OrderRestService extends CoreRestService<Order, OrderModel>{
         model.setStreet(entity.getStreet());
         model.setStreetType(entity.getStreetType());
         model.setHouseNumber(entity.getHouseNumber());
-        model.setCourierId(entity.getCourier().getId());
         model.setPizzas(entity.getPizzas());
+        model.setModifierUserId(entity.getModifierUser().getId());
+        model.setModificationDate(entity.getModificationDate());
+        model.setCourier(entity.getCourier());
         return model;
     }
 
