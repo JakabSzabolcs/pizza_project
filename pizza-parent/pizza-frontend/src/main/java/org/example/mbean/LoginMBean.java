@@ -59,7 +59,6 @@ public class LoginMBean implements Serializable {
         HttpSession session = (HttpSession) FacesContext.getCurrentInstance().getExternalContext().getSession(true);
         if (user != null && passwordEncoder.matches(password, user.getPassword())) {
             String redirectUrl = "";
-            FacesMessage message = null;
 
             if (user.getRole().equals(UserRole.ADMIN)) {
                 session.setAttribute("admin", user);

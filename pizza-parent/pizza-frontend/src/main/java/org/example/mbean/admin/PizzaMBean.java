@@ -4,6 +4,7 @@ import jdk.jfr.Name;
 import org.apache.bcel.generic.FLOAD;
 import org.example.entity.Pizza;
 import org.example.mbean.LoginMBean;
+import org.example.service.OrderService;
 import org.example.service.PizzaService;
 
 import javax.annotation.PostConstruct;
@@ -34,9 +35,8 @@ public class PizzaMBean extends LoginMBean implements Serializable {
     }
 
 
-
     public void save() {
-        if(selectedPizza.getId() == null) {
+        if (selectedPizza.getId() == null) {
             selectedPizza.setCreatorUser(getLoggedInUser());
             pizzaService.add(selectedPizza);
         } else {
@@ -52,10 +52,14 @@ public class PizzaMBean extends LoginMBean implements Serializable {
     }
 
     public void remove() {
-        pizzaService.remove(selectedPizza);
-        infoMessage("Pizza deleted successfully.");
-        load();
-        initNewPizza();
+        try {
+            pizzaService.remove(selectedPizza);
+            infoMessage("Pizza removed successfully.");
+            load();
+            initNewPizza();
+        } catch (Exception e) {
+            errorMessage("Pizza cannot be removed.");
+        }
     }
 
     public void initNewPizza() {

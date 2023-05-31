@@ -17,10 +17,10 @@
         <p:panel header="Login Panel" styleClass="login-panel">
             <h:panelGrid columns="2" cellpadding="5">
                 <h:outputLabel for="username" value="Username:" />
-                <p:inputText id="username" value="#{loginMBean.username}" required="true" label="username" />
+                <p:inputText id="username" value="#{loginMBean.username}" required="false" label="username" />
 
                 <h:outputLabel for="password" value="Password:" />
-                <p:password id="password" value="#{loginMBean.password}" required="true" label="password" />
+                <p:password id="password" value="#{loginMBean.password}" required="false" label="password" />
 
                 <f:facet name="footer">
                     <p:commandButton icon="pi pi-sign-in" id="loginButton" value="Login" update="growl" actionListener="#{loginMBean.login(loginMBean.username, loginMBean.password)}"/>

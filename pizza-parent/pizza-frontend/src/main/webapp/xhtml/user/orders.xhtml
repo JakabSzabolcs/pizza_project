@@ -20,49 +20,50 @@
         </p:toolbarGroup>
         <p:growl id="growl" showDetail="true" globalOnly="true"/>
 
-        <p:dataTable value="#{userOrdersMBean.orderList}" var="order">
+        <p:dataTable value="#{userOrdersMBean.list}" var="order" stickyHeader="true">
             <p:column>
-                <p:rowToggler>
-                    <h:outputText value="+" />
+                <p:rowToggler expandLabel="+" collapseLabel="-">
+                    <h:outputText value=" "/>
                 </p:rowToggler>
             </p:column>
-            <p:column headerText="City">
-                <h:outputText value="#{order.city}" />
-            </p:column>
-            <p:column headerText="Street">
-                <h:outputText value="#{order.street}" />
-            </p:column>
-            <p:column headerText="Street Type">
-                <h:outputText value="#{order.streetType}" />
-            </p:column>
-            <p:column headerText="House Number">
-                <h:outputText value="#{order.houseNumber}" />
+            <p:column headerText="Address">
+                <h:outputText value="#{order.city}, #{order.street} #{order.streetType} #{order.houseNumber}"/>
             </p:column>
             <p:column headerText="Delivery Date">
                 <h:outputText value="#{order.deliveryDate}">
-                    <f:convertDateTime pattern="dd/MM/yyyy HH:mm" />
+                    <f:convertDateTime pattern="dd/MM/yyyy HH:mm"/>
                 </h:outputText>
             </p:column>
             <p:column headerText="Courier's phone number">
                 <h:outputText value="#{order.courier.phoneNumber}">
-                    <f:convertNumber currencySymbol="HUF" type="currency" />
+                    <f:convertNumber currencySymbol="HUF" type="currency"/>
                 </h:outputText>
             </p:column>
             <p:rowExpansion>
-                    <p:dataTable value="#{order.pizzas}" var="pizza">
-                        <p:column>
-                            <h:outputText value="#{pizza.name}" />
-                        </p:column>
-                        <p:column>
-                            <h:outputText value="#{pizza.details}" />
-                        </p:column>
-                        <p:column>
-                            <h:outputText value="#{pizza.price}">
-                                <f:convertNumber currencySymbol="HUF" type="currency" />
-                            </h:outputText>
-                        </p:column>
-                    </p:dataTable>
+                <p:dataTable value="#{order.pizzas}" var="pizza" >
+                    <p:column>
+                        <h:outputText value="#{pizza.name}"/>
+                    </p:column>
+                    <p:column>
+                        <h:outputText value="#{pizza.details}"/>
+                    </p:column>
+                    <p:column>
+                        <h:outputText value="#{pizza.price}">
+                            <f:convertNumber currencySymbol="HUF" type="currency"/>
+                        </h:outputText>
+                    </p:column>
+                </p:dataTable>
+
+                <p:panelGrid columns="3">
+                    <p:outputLabel value="Total Price:" />
+                    <h:outputText value="#{orderPizzaMBean.TotalPrice(order)}">
+                        <f:convertNumber currencySymbol="HUF" type="currency" />
+                    </h:outputText>
+                </p:panelGrid>
+
             </p:rowExpansion>
+
+
         </p:dataTable>
 
     </h:form>

@@ -9,16 +9,10 @@ import org.example.service.OrderService;
 import org.example.service.PizzaService;
 
 import javax.annotation.PostConstruct;
-import javax.enterprise.context.SessionScoped;
-import javax.faces.bean.RequestScoped;
-import javax.faces.context.ExternalContext;
-import javax.faces.context.FacesContext;
 import javax.faces.view.ViewScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
-import javax.servlet.http.HttpSession;
 import java.io.Serializable;
-import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -28,11 +22,10 @@ import java.util.List;
 @Named
 public class OrderPizzaMBean extends LoginMBean implements Serializable {
     private User loggedInUser;
-    private List<Order> orderList;//own
+    private List<Order> list;//own
     private Order currentOrder = new Order();
 
     private Pizza selectedPizza = new Pizza();
-    private int totalPrice;
 
 
     @Inject
@@ -52,7 +45,7 @@ public class OrderPizzaMBean extends LoginMBean implements Serializable {
 
     private void load() {
         loggedInUser = super.getLoggedInUser();
-        orderList = loggedInUser.getOrders();
+        list = loggedInUser.getOrders();
     }
 
     public void SaveOrder() {
@@ -88,9 +81,9 @@ public class OrderPizzaMBean extends LoginMBean implements Serializable {
         currentOrder = new Order();
     }
 
-    public int getTotalPrice() {
-        totalPrice = 0;
-        for (Pizza pizza : currentOrder.getPizzas()) {
+    public int TotalPrice(Order order) {
+        int totalPrice = 0;
+        for (Pizza pizza : order.getPizzas()) {
             totalPrice += pizza.getPrice();
         }
         return totalPrice;
@@ -108,12 +101,12 @@ public class OrderPizzaMBean extends LoginMBean implements Serializable {
         this.loggedInUser = loggedInUser;
     }
 
-    public List<Order> getOrderList() {
-        return orderList;
+    public List<Order> getList() {
+        return list;
     }
 
-    public void setOrderList(List<Order> orderList) {
-        this.orderList = orderList;
+    public void setList(List<Order> list) {
+        this.list = list;
     }
 
     public List<Pizza> getPizzaList() {
@@ -140,10 +133,6 @@ public class OrderPizzaMBean extends LoginMBean implements Serializable {
         this.selectedPizza = selectedPizza;
     }
 
-
-    public void setTotalPrice(int totalPrice) {
-        this.totalPrice = totalPrice;
-    }
 
     public PizzaService getPizzaService() {
         return pizzaService;

@@ -15,11 +15,11 @@
                 <p:commandButton icon="pi pi-plus" value="New" actionListener="#{userMBean.initNewUser()}"
                                  update="@form"
                                  oncomplete="PF('userDialog').show()"/>
-                <p:commandButton icon="pi pi-pencil" value="Edit" actionListener="#{userMBean.initNewUser()}"
-                                 update="@form :adminForm"
+                <p:commandButton icon="pi pi-pencil" value="Edit"
+                                 update="@form :userDialog"
                                  oncomplete="PF('userDialog').show()" rendered="#{userMBean.selectedUser.id != null}"/>
                 <p:commandButton icon="pi pi-trash" value="Delete"
-                                 update="adminForm:confirmRemove"
+                                 update=":confirmRemove"
                                  oncomplete="PF('confirmRemove').show()" rendered="#{userMBean.selectedUser.id != null}"/>
             </p:toolbarGroup>
             <p:toolbarGroup>
@@ -36,8 +36,8 @@
                      rowKey="#{user.id}"
                      paginatorPosition="bottom"
                      rowsPerPageTemplate="5,10,{ShowAll|'All'}">
-            <p:ajax event="rowSelect" update="userTable"/>
-            <p:ajax event="rowUnselect" listener="#{userMBean.initNewUser()}" update="userTable"/>
+            <p:ajax event="rowSelect" update="@form"/>
+            <p:ajax event="rowUnselect" listener="#{userMBean.initNewUser()}" update="@form"/>
             <p:column headerText="Order ID">
                 <h:outputText value="#{user.id}"/>
             </p:column>
@@ -72,15 +72,22 @@
 
     <p:dialog modal="true" id="confirmRemove" widgetVar="confirmRemove" closable="true">
         <h:form id="confirmRemoveForm">
-            <p:outputLabel value="Are you sure you want to delete this user along with all of their orders?"/>
-            <br/>
-            <p:commandButton value="Yes" actionListener="#{userMBean.remove()}"  update="adminForm:userTable"
-                             oncomplete="PF('confirmRemove').hide()">
-            </p:commandButton>
-            <p:commandButton value="No" actionListener="#{userMBean.initNewUser()}"  update="adminForm:userTable"
-                             oncomplete="PF('confirmRemove').hide()" style="margin: 10px">
-            </p:commandButton>
+            <p:outputLabel value="Are you sure you want to delete this user along with all of their orders?" />
+            <br />
+            <p:commandButton value="Yes" onclick="PF('confirmation').show()" style="margin-right:10px;" />
+            <p:commandButton value="No" onclick="PF('confirmRemove').hide()" style="margin-right:10px;" />
         </h:form>
     </p:dialog>
+
+    <p:confirmDialog modal="true" widgetVar="confirmation" closable="false" showEffect="fade" hideEffect="fade">
+        <h:form id="confirmationForm">
+            <p:outputLabel value="This action will permanently delete the user and all their orders. Are you sure?" />
+            <br />
+            <p:commandButton value="Yes, Delete" actionListener="#{userMBean.remove()}" update="adminForm:userTable"
+                             oncomplete="PF('confirmation').hide()" />
+            <p:commandButton value="Cancel" onclick="PF('confirmation').hide()" style="margin-left:10px;" />
+        </h:form>
+    </p:confirmDialog>
+
 </h:body>
 </html>

@@ -22,7 +22,7 @@
             <div class="col-4">
                 <div class="col-12">
                     <p:dataTable value="#{orderPizzaMBean.pizzaList}" var="pizza">
-                        <p:column headerText="Product">
+                        <p:column headerText="Product" >
                             <h:outputText value="#{pizza.name}" />
                         </p:column>
                         <p:column headerText="Details">
@@ -57,7 +57,7 @@
                                              actionListener="#{orderPizzaMBean.removePizzaFromOrder(pizza)}" update="@form" />
                         </p:column>
                     </p:dataTable>
-                    <h:outputText value="Total Price: #{orderPizzaMBean.totalPrice}" style="font-size: 20px">
+                    <h:outputText value="Total Price: #{orderPizzaMBean.TotalPrice(orderPizzaMBean.currentOrder)}" style="font-size: 20px">
                         <f:convertNumber currencySymbol="HUF" type="currency" />
                     </h:outputText>
                     <p:toolbar>
